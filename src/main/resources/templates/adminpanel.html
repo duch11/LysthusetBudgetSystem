@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+        <title>Document</title>
+
+        <!--Latest compiled and minified CSS-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <!--CSS-->
+        <link rel="stylesheet" href="adminstyle.css"></link>
+    </head>
+    <body>
+        <div class="container">
+            <h1>AdminPanel</h1>
+            <div class="users panel panel-default">
+                <div class="panel-heading">
+                    Brugere
+                </div>
+                <div class="panel-body">
+                    <table>
+                        <tr>
+                            <td>Navn</td>
+                            <td>Status</td>
+                            <td>Rolle</td>
+                        </tr>
+                        <tr th:each="user: ${users}">
+                            <td th:text="${user.getName()}">Jonas</td>
+                            <td th:text="${user.getActive()}">Aktiv</td>
+                            <td>Admin</td>
+                            <td>
+                                <button type="submit" class="btn btn-default">Edit</button>
+                            </td>
+                            <td>
+                                <form th:attr="action='/deleteuser'" method="POST">
+                                    <input th:attr="value=${user.getUserID()}" type="hidden" name="deleteid"></input>
+                                    <button type="submit" class="btn btn-default">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Stine</td>
+                            <td>Aktiv</td>
+                            <td>Økonomi</td>
+                            <td><button class="btn btn-default">Edit</button></td>
+                            <td><button class="btn btn-default">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Røde</td>
+                            <td>Aktiv</td>
+                            <td>Bruger</td>
+                            <td><button class="btn btn-default">Edit</button></td>
+                            <td><button class="btn btn-default">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Tine</td>
+                            <td>Aktiv</td>
+                            <td>Bruger</td>
+                            <td><button class="btn btn-default">Edit</button></td>
+                            <td><button class="btn btn-default">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Michael</td>
+                            <td>Aktiv</td>
+                            <td>Bruger</td>
+                            <td><button class="btn btn-default">Edit</button></td>
+                            <td><button class="btn btn-default">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Marie</td>
+                            <td>Aktiv</td>
+                            <td>Bruger</td>
+                            <td><button class="btn btn-default">Edit</button></td>
+                            <td><button class="btn btn-default">Delete</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="options">
+                <form action="/adduser" method="POST">
+                    First name: <input type="text" name="navn"></input>
+                    Last name: <input type="text" name="pass"></input>
+                    <input type="submit" value="Submit"></input>
+                </form>
+                <a href="/adduser" class="btn btn-default">Create new user</a>
+            </div>
+        </div>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,17 @@
+h1 {
+
+}
+
+th, tr {
+    padding-left: 8px;
+    padding-bottom: 5px;
+}
+
+
+.users, .options, .container {
+    width: 400px;
+    margin: 20px auto 0;
+}
+
+.options {
+}
