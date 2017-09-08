@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="adminstyle.css">
+    </head>
+    <body>
+        
+        <div class="container">
+            <div th:replace="fragments/header :: header"/>
+            <h1>AdminPanel</h1>
+            <div class="users panel panel-default">
+                <div class="panel-heading">Brugere</div>
+                    <div class="panel-body">
+                        <table>
+                            <tr>
+                                <th>Navn</th>
+                                <th>Status</th>
+                                <th>Rolle</th>
+                            </tr>
+                            <tr>
+                                <th>Jonas</th>
+                                <th>Aktiv</th>
+                                <th>Admin</th>
+                                <th><button class="btn btn-default">Edit</button></th>
+                                <th><button class="btn btn-default">Delete</button></th>
+                            </tr>
+                            <tr>
+                                <th>Stine</th>
+                                <th>Aktiv</th>
+                                <th>Økonomi</th>
+                                <th><button class="btn btn-default">Edit</button></th>
+                                <th><button class="btn btn-default">Delete</button></th>
+                            </tr>
+                            <tr>
+                                <th>Røde</th>
+                                <th>Aktiv</th>
+                                <th>Bruger</th>
+                                <th><button class="btn btn-default">Edit</button></th>
+                                <th><button class="btn btn-default">Delete</button></th>
+                            </tr>
+                            <tr>
+                                <th>Tine</th>
+                                <th>Aktiv</th>
+                                <th>Bruger</th>
+                                <th><button class="btn btn-default">Edit</button></th>
+                                <th><button class="btn btn-default">Delete</button></th>
+                            </tr>
+                            <tr>
+                                <th>Michael</th>
+                                <th>Aktiv</th>
+                                <th>Bruger</th>
+                                <th><button class="btn btn-default">Edit</button></th>
+                                <th><button class="btn btn-default">Delete</button></th>
+                            </tr>
+                            <tr>
+                                <th>Marie</th>
+                                <th>Aktiv</th>
+                                <th>Bruger</th>
+                                <th><button class="btn btn-default">Edit</button></th>
+                                <th><button class="btn btn-default">Delete</button></th>
+                            </tr>
+                        </table>    
+                    </div>
+                </div>
+                <div class="options">
+                    <button class="btn btn-default">Create new user</button>
+                </div>    
+                <div th:replace="fragments/footer :: footer"/>
+                </div>
+            </div>
+        </div>   
+    </body>
+</html>
