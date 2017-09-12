@@ -7,9 +7,12 @@ th, tr {
     padding-bottom: 5px;
 }
 
+.btn-danger {
 
-.users, .options, .container {
-    width: 400px;
+}
+
+
+.container {
     margin: 20px auto 0;
 }
 
