@@ -1,20 +1,47 @@
 package com.lysthuset.ourbudget.model.entities;
 
-public class User {
-    private int userID;
+import java.lang.management.BufferPoolMXBean;
+import java.util.UUID;
 
+public class User {
+    private String userID;
     private String name;
+
     private String pass;
+
     private Boolean admin;
     private Boolean budgetBoss;
     private Boolean active;
-    public User(int userID, String name, String pass) {
+    public User(){
+
+    }
+
+    //admin dummy tester
+    public User(String name, String pass) {
         this.userID = userID;
         this.name = name;
         this.pass = pass;
-        admin = false;
-        budgetBoss = false;
-        active = false;
+        this.admin = true;
+        this.budgetBoss = false;
+        this.active = false;
+    }
+
+    public User(String userID, String name, String pass) {
+        this.userID = userID;
+        this.name = name;
+        this.pass = pass;
+        this.admin = false;
+        this.budgetBoss = false;
+        this.active = false;
+    }
+
+    public User(String userID, String name, String pass, Boolean admin, Boolean budgetBoss, Boolean active){
+        this.userID = userID;
+        this.name = name;
+        this.pass = pass;
+        this.admin = admin;
+        this.budgetBoss = budgetBoss;
+        this.active = active;
     }
 
     public String getName() {
@@ -49,8 +76,16 @@ public class User {
         this.active = active;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
 

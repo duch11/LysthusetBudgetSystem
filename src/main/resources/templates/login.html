@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8"></meta>
@@ -11,28 +12,34 @@
         <link rel="stylesheet" href="adminstyle.css"/>
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-1 col-lg-2"></div>
-                <div class="col-md-10 col-lg-8">
-                    <div th:replace="fragments/header :: header"/>
+    <div class="container">
+        <div th:replace="fragments/branding :: brandingFragment"/>
+        <div class="row">
+            <div class="col-md-3 col-lg-3"></div>
+                <div class="col-md-6 col-lg-6">
                     <h1>Login</h1>
                     <!--Objektet er IKKE navnet, men typen.. Den skal bare lede efter en slags-->
-                    <form th:object="${user}" class="form" action="/login" method="POST">
+                    <form class="form" action="/adminpanel" method="GET">
                         <div class="form-group">
                             <label for="nameField">Navn:</label>
-                            <input th:field="*{name}" type="text" id="nameField" class="form-control"/>
+                            <input type="text" id="nameField" class="form-control"/>
                         </div>
                         <div class="form-group">
                             <label for="passwordField">Password:</label>
-                            <input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>
+                            <input type="text" class="form-control" id="passwordField"/>
                         </div>
                         <input style="width: 100%; height: 70px; background-color: darkgreen; color: beige; font-weight:300; font-size: 1.4em; font-weight: bold"  class="btn" type="submit" value="LOGIN"/>
                     </form>
                 </div>
-                <div class="col-md-1 col-lg-2"></div>
+                <div class="col-md-3 col-lg-3"></div>
             </div>
         </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- jQuery library -->
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                 
     </body>
 </html>
