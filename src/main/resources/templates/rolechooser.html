@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+        <title>Document</title>
+
+        <!--Latest compiled and minified CSS-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <!--CSS-->
+        <link rel="stylesheet" href="adminstyle.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/branding :: brandingFragment"/>
+            <div class="row">
+                <div class="col-md-1 col-lg-2">
+                </div>
+                <div class="col-md-10 col-lg-8">
+                    <div th:replace="fragments/header :: header"/>
+                    <h1>MENU</h1>
+                    <a class="btn btn-default">REGISTRER BELØB</a><a class="btn btn-default">REGISTRER BELØB</a><a class="btn btn-default">REGISTRER BELØB</a>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><a class="btn btn-default">REGISTRER BELØB</a></td>
+                                    <td><a class="btn btn-default">OVERBLIK</a></td>
+                                    <td><a class="btn btn-default">BRUGERADMINISTRATION</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-2">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

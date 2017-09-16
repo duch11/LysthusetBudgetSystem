@@ -1,7 +1,7 @@
 package com.lysthuset.ourbudget.controller;
 
 
-import com.lysthuset.ourbudget.model.entities.LoginAuthenticator;
+
 import com.lysthuset.ourbudget.model.entities.User;
 import com.lysthuset.ourbudget.model.repositories.IUserRepository;
 import com.lysthuset.ourbudget.model.repositories.UserArraylistRepository;
@@ -27,8 +27,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public String login(Model model, @ModelAttribute User userToLogin, @ModelAttribute LoginAuthenticator auth){
-        auth.login(userToLogin.getName(), userToLogin.getPass());
+    public String login(Model model, @ModelAttribute User userToLogin){
+
         return "hej";
     }
 
@@ -37,7 +37,7 @@ public class HomeController {
         model.addAttribute("users", usersArray);
         model.addAttribute("user", new User());
 
-        return "adminpanel";
+        return "rolechooser";
     }
 
     //OVERVEJ th:object og at bruge en User object som parameter i stedet for at lave et selv
