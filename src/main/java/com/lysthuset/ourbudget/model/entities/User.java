@@ -6,17 +6,14 @@ import java.util.UUID;
 public class User {
     private String userID;
     private String name;
-
     private String pass;
-
     private Boolean admin;
     private Boolean budgetBoss;
     private Boolean active;
-    public User(){
 
-    }
+    public User(){}
 
-    //admin dummy tester
+    //admin dummy tester NAVN PASS
     public User(String name, String pass) {
         this.userID = userID;
         this.name = name;
@@ -26,6 +23,7 @@ public class User {
         this.active = false;
     }
 
+    //tester USERID NAVN PASS
     public User(String userID, String name, String pass) {
         this.userID = userID;
         this.name = name;
@@ -35,6 +33,7 @@ public class User {
         this.active = false;
     }
 
+    // FULD Constructor
     public User(String userID, String name, String pass, Boolean admin, Boolean budgetBoss, Boolean active){
         this.userID = userID;
         this.name = name;

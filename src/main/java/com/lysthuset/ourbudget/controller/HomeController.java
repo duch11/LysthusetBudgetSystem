@@ -37,7 +37,7 @@ public class HomeController {
         model.addAttribute("users", usersArray);
         model.addAttribute("user", new User());
 
-        return "rolechooser";
+        return "welcome";
     }
 
     //OVERVEJ th:object og at bruge en User object som parameter i stedet for at lave et selv

@@ -2,8 +2,25 @@
     <!-- this is header -->
     <nav>
         <!-- Bedre placering af knap -->
-        <button class="btn btn-primary"> &lt; Tilbage </button>
+        <!--<button class="btn btn-primary"> &lt; Tilbage </button>-->
         <!--<button class="btn btn-info">Overblik</button>-->
+        <div th:replace="fragments/branding :: brandingFragment"/>
+
         <a href="/" class="btn btn-danger pull-right">Log ud</a>
+
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="/adminpanel">Person</a>
+            </li>
+            <li>
+                <a href="/adminpanel">Fælles</a>
+            </li>
+            <li>
+                <a href="/adminpanel">Medlem</a>
+            </li>
+            <li>
+                <a href="/adminpanel">Medlem</a>
+            </li>
+        </ul>
     </nav>
 </div>

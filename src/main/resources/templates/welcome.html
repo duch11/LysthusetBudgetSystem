@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+        <title>Document</title>
+
+        <!--Latest compiled and minified CSS-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <!--CSS-->
+        <link rel="stylesheet" href="adminstyle.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div th:replace="fragments/header :: header"/>
+            </div>
+            <div class="row">
+                <br/>
+                <div class="col-lg-5">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" style="padding: 5px">
+                            <div class="text-center" style="font-size: 20px; font-weight: bold">Tilføj betaling</div>
+                        </div>
+                        <div class="panel-body" style="padding-top: 24px">
+                            <form class="form">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="beskrivelse">Beskrivelse</label>
+                                        <input class="form-control" id="beskrivelse" type="text"/>
+                                        <label for="amount">Beløb</label>
+                                        <input class="form-control" id="amount"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kategori">Kategori</label>
+                                        <select class="form-control" id="kategori">
+                                            <option>Dagligvarer</option>
+                                            <option>Kaffe</option>
+                                            <option>Større Indkøb</option>
+                                            <option>Diverse</option>
+                                        </select>
+                                        <label for="date">Dato</label>
+                                        <input id="date" type="date"/>
+                                        <button class="btn btn-primary pull-right" type="submit">+ TILFØJ</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!--<div class="btn-group btn-group-justified">
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="panel panel-primary" style="height: 130px;">
+                        <div class="panel-body" style="padding-top: 24px">
+                            <div class="text-center" style="font-size: 30px; font-weight: bold">Januar 2017</div>
+                            <div class="btn-group btn-group-justified">
+                                <a class="btn btn-primary"> &lt; </a>
+                                <!--<a class="btn btn-primary disabled btn-lg">JANUAR</a>-->
+                                <a class="btn btn-primary"> &gt; </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary" style="height: 130px">
+                        <div class="panel-heading text-center" style="padding: 5px">
+                            <div class="" style="font-size: 20px; font-weight: bold; padding: 0;">Husleje til betaling</div>
+                        </div>
+                        <div class="panel-body text-center">
+                            <div class="" style="font-size: 40px; font-weight: bold; ">3500kr</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row tab-content">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" style="font-size: 20px; font-weight: bold">
+                            Udlæg denne måned
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Dato</th>
+                                    <th>Betaling</th>
+                                    <th>Kategori</th>
+                                    <th>Beløb</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>13/1 - 2017</td>
+                                    <td>Olie i netto</td>
+                                    <td>Dagligvarer</td>
+                                    <td>13,95kr</td>
+                                </tr>
+                                <tr>
+                                    <td>12/1 - 2017</td>
+                                    <td>Søstrene grene</td>
+                                    <td>Krydderier</td>
+                                    <td>60,00kr</td>
+                                </tr>
+                                <tr>
+                                    <td>9/1 - 2017</td>
+                                    <td>Netto - Kaffe</td>
+                                    <td>Kaffe</td>
+                                    <td>200,00kr</td>
+                                </tr>
+                                <tr>
+                                    <td>10/1 - 2017</td>
+                                    <td>Silvan - plæneklipper</td>
+                                    <td>Større indkøb</td>
+                                    <td>500,00kr</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
