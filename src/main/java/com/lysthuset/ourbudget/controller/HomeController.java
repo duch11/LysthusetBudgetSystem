@@ -1,7 +1,4 @@
 package com.lysthuset.ourbudget.controller;
-
-
-
 import com.lysthuset.ourbudget.model.entities.User;
 import com.lysthuset.ourbudget.model.repositories.IUserRepository;
 import com.lysthuset.ourbudget.model.repositories.UserArraylistRepository;
@@ -9,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Null;
+import javax.jws.WebParam;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,27 +16,59 @@ public class HomeController {
     private ArrayList<User> usersArray = new ArrayList<>();
     IUserRepository userRepo = new UserArraylistRepository();
 
+    /*      ===============
+            ==== LOGIN ====
+            ===============        */
 
-    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
-    public String index(Model model){
-        model.addAttribute(new User());
-        return "login";
-    }
-
-    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
+    /*@RequestMapping(value = {"/login"}, method = RequestMethod.POST)
     public String login(Model model, @ModelAttribute User userToLogin){
 
         return "hej";
+    }*/
+
+    /*      ===============
+            == OVERVIEW  ==
+            ===============        */
+
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
+    public String overview(){
+        return "overview";
     }
+
+    /*      ===============
+            == USERVIEW  ==
+            ===============        */
+
+    @RequestMapping(value = "/userview", method = RequestMethod.GET)
+    public String userview(){
+        return "userview";
+    }
+
+    /*      ===============
+            = BUDGETVIEW ==
+            ===============        */
+
+    @RequestMapping(value = "/budgetview", method = RequestMethod.GET)
+    public String budgetview(){
+        return "budgetview";
+    }
+
+
+    /*      ===============
+            == ADMINVIEW ==
+            ===============        */
 
     @RequestMapping(value = {"/adminpanel"}, method = RequestMethod.GET)
     public String adminpanel(Model model){
         model.addAttribute("users", usersArray);
         model.addAttribute("user", new User());
 
-        return "welcome";
+        return "adminview";
     }
 
+    /*      ===============
+            === ADDUSER ===
+            ===============        */
     //OVERVEJ th:object og at bruge en User object som parameter i stedet for at lave et selv
     @RequestMapping(value = {"/adduser"}, method = RequestMethod.POST)
     public String addUser(Model model,
@@ -64,9 +93,12 @@ public class HomeController {
 
         //opdater/overskriv array (tror jeg den gør)
         model.addAttribute("users", usersArray);
-        return "adminpanel";
+        return "adminview";
     }
 
+    /*      ===============
+            = DELETE USER =
+            ===============        */
     @RequestMapping(value = {"/deleteuser"}, method = RequestMethod.POST)
     public String deleteuser(Model model,
                              @RequestParam(value = "deleteid") String id) {

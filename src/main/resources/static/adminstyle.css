@@ -7,6 +7,30 @@
     flex:1 1 auto;
 }
 
+.rentList {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.monthPicker{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.monthPickerSmallText {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.panelTitle{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0;
+}
+
+
+
 h1 {
 
 }

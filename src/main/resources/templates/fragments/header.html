@@ -6,21 +6,36 @@
         <!--<button class="btn btn-info">Overblik</button>-->
         <div th:replace="fragments/branding :: brandingFragment"/>
 
-        <a href="/" class="btn btn-danger pull-right">Log ud</a>
+        <div class="btn-group pull-right">
+   <!--         <a href="/adminpanel" class="btn btn-default">Admin</a>-->
+            <a href="/budgetview" class="btn btn-warning">Budget</a>
+        </div>
 
-        <ul class="nav nav-tabs">
-            <li class="active">
-                <a href="/adminpanel">Person</a>
+        <ul class="nav nav-pills">
+            <li>
+                <a href="/">Overblik</a>
             </li>
             <li>
-                <a href="/adminpanel">Fælles</a>
+                <a href="/userview">Røde</a>
             </li>
             <li>
-                <a href="/adminpanel">Medlem</a>
+                <a href="/userview">Tine</a>
             </li>
             <li>
-                <a href="/adminpanel">Medlem</a>
+                <a href="/userview">Jonas</a>
             </li>
+            <li>
+                <a href="/userview">Marie</a>
+            </li>
+            <li>
+                <a href="/userview">Michael</a>
+            </li>
+            <li>
+                <a href="/userview">Stine</a>
+            </li>
+            <!--<li>
+                <a href="/budgetview">Budget</a>
+            </li>-->
         </ul>
     </nav>
 </div>

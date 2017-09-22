@@ -1,0 +1,124 @@
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+        <title>Document</title>
+
+        <!--Latest compiled and minified CSS-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <!--CSS-->
+        <link rel="stylesheet" href="adminstyle.css"/>
+    </head>
+    <body>
+    <!--    HEADER      -->
+        <div class="container">
+            <div class="row">
+                <div th:replace="fragments/header :: header"/>
+            </div>
+            <!--    OVERSIGT      -->
+            <div class="row">
+                <br/>
+                <div class="col-lg-4">
+                    <!--    MONTH CHOOSER      -->
+                    <div class="panel panel-primary">
+                        <div class="panel-body" style="padding-top: 24px">
+                            <div class="monthPickerSmallText">Budget for:</div>
+                            <div class="text-center monthPicker">Januar 2017</div>
+                            <div class="btn-group btn-group-justified">
+                                <a class="btn btn-primary"> &lt; </a>
+                                <a class="btn btn-primary"> &gt; </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div>Tilføj Budget-post</div>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <table class="table">
+                            <thead>
+                            <th>Budget post</th>
+                            <th>Kategori</th>
+                            <th>Beløb pr måned</th>
+                            <th>Beløb pr person</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    Kaffeklub
+                                </td>
+                                <td>
+                                    Kaffe
+                                </td>
+                                <td>
+                                    180kr
+                                </td>
+                                <td>
+                                    30kr
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Fællesting
+                                </td>
+                                <td>
+                                    Dagligvarer
+                                </td>
+                                <td>
+                                    300kr
+                                </td>
+                                <td>
+                                    50kr
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Husleje
+                                </td>
+                                <td>
+                                    Regning
+                                </td>
+                                <td>
+                                    21000kr
+                                </td>
+                                <td>
+                                    3500kr
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    LLO
+                                </td>
+                                <td>
+                                    Regning
+                                </td>
+                                <td>
+                                    136kr
+                                </td>
+                                <td>
+                                    22,5kr
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <th></th>
+                            <th></th>
+                            <th>21.616,00kr</th>
+                            <th>3602,7kr</th>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </body>
+</html>

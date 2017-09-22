@@ -1,0 +1,222 @@
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"></meta>
+        <title>Document</title>
+
+        <!--Latest compiled and minified CSS-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <!--CSS-->
+        <link rel="stylesheet" href="adminstyle.css"/>
+    </head>
+    <body>
+    <!--    HEADER      -->
+        <div class="container">
+            <div class="row">
+                <div th:replace="fragments/header :: header"/>
+            </div>
+
+            <!--    OVERSIGT      -->
+            <div class="row">
+                <br/>
+                <div class="col-lg-4">
+                    <!--    MONTH CHOOSER      -->
+                    <div class="panel panel-primary" style="height: 130px;">
+                        <div class="panel-body" style="padding-top: 24px">
+                            <div class="text-center" style="font-size: 30px; font-weight: bold">Januar 2017</div>
+                            <div class="btn-group btn-group-justified">
+                                <a class="btn btn-primary"> &lt; </a>
+                                <!--<a class="btn btn-primary disabled btn-lg">JANUAR</a>-->
+                                <a class="btn btn-primary"> &gt; </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary" >
+                        <!--style="height: 130px"-->
+                        <div class="panel-heading text-center" style="padding: 5px">
+
+                            <!--    TITEL HUSLEJE      -->
+                            <div class="panelTitle">Husleje Februar</div>
+                        </div>
+                        <div class="panel-body text-center">
+
+                            <!--    HUSLEJE BELØB      -->
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="rentList">Jonas </div>
+                                    </td>
+                                    <td>
+                                        <div class="rentList">3500kr</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rentList">Stine </div>
+                                    </td>
+                                    <td>
+                                        <div class="rentList">3400kr</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rentList">Tine </div>
+                                    </td>
+                                    <td>
+                                        <div class="rentList">3500kr</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rentList">Marie </div>
+                                    </td>
+                                    <td>
+                                        <div class="rentList">3210kr</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rentList">Michael </div>
+                                    </td>
+                                    <td>
+                                        <div class="rentList">3500kr</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rentList">Røde </div>
+                                    </td>
+                                    <td>
+                                        <div class="rentList">3500kr</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+
+                    <div class="panel panel-danger">
+                        <div class="panel-heading" style="font-size: 20px; font-weight: bold">
+                            Budget −193,95 KR
+                        </div>
+
+                        <!--    PANEL BODY      -->
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th>
+                                        Post
+                                    </th>
+                                    <th>
+                                        Budget
+                                    </th>
+                                    <th>
+                                        Brugt
+                                    </th>
+                                    <th>
+                                        Tilbage
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Kaffe
+                                    </td>
+                                    <td>
+                                        180,00 kr
+                                    </td>
+                                    <td>
+                                        -100,00 kr
+                                    </td>
+                                    <td>
+                                        80,00 kr
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Dagligvarer
+                                    </td>
+                                    <td>
+                                        300,00 kr
+                                    </td>
+                                    <td>
+                                        -73,95 kr
+                                    </td>
+                                    <td>
+                                        226,05 kr
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Større indkøb
+                                    </td>
+                                    <td>
+                                        0,00 kr
+                                    </td>
+                                    <td>
+                                        -500,00 kr
+                                    </td>
+                                    <td>
+                                        -500,00 kr
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--  UDLÆG OVERSIGT  -->
+                    <!--    PANEL HEADING      -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" style="font-size: 20px; font-weight: bold">
+                            Udlæg denne måned
+                        </div>
+
+                        <!--    PANEL BODY      -->
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <th>Dato</th>
+                                    <th>Person</th>
+                                    <th>Betaling</th>
+                                    <th>Kategori</th>
+                                    <th>Beløb</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>12/1 - 2017</td>
+                                        <td>Røde</td>
+                                        <td>Søstrene grene</td>
+                                        <td>Dagligvarer</td>
+                                        <td>60,00kr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9/1 - 2017</td>
+                                        <td>Tine</td>
+                                        <td>Netto - Kaffe</td>
+                                        <td>Kaffe</td>
+                                        <td>100,00kr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10/1 - 2017</td>
+                                        <td>Michael</td>
+                                        <td>Silvan - plæneklipper</td>
+                                        <td>Større indkøb</td>
+                                        <td>500,00kr</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
