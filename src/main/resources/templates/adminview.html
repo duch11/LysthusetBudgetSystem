@@ -18,27 +18,56 @@
             <div th:replace="fragments/header :: header"/>
         </div>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-10">
                 <h1>AdminPanel</h1>
+
+                <form th:object="${user}" class="form" style="margin-bottom: 20px;" action="/adduser" method="POST">
+
+                    <div class="form-group col-lg-3">
+                        <label for="nameField">Navn:</label>
+                        <input th:field="*{name}" type="text" id="nameField" class="form-control"/>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="passwordField">Password:</label>
+                        <input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>
+                    </div>
+
+                    <div class="checkbox">
+                        <label><input type="checkbox" value=""/>Aktiv?</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value=""/>Admin</label>
+                    </div>
+
+                    <input class="btn btn-default" type="submit" value="Lav ny bruger"/>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                             Brugere
                     </div>
                     <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table">
+
+                        <div class="table-responsive ">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <td>Navn</td>
                                     <td>Status</td>
-                                    <td>Rolle</td>
+                                    <td>Admin</td>
+                                    <td>UUID</td>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="user: ${users}">
                                     <td th:text="${user.getName()}">Jonas</td>
-                                    <td th:text="${user.getActive()}">Aktiv</td>
-                                    <td>Admin</td>
+                                    <td th:text="${user.isActive()}">Aktiv</td>
+                                    <td th:text="${user.isAdmin()}">Admin</td>
+                                    <td th:text="${user.getUserID()}">UUID</td>
                                     <td>
                                         <button type="submit" class="btn btn-default">Edit</button>
                                     </td>
@@ -49,59 +78,26 @@
                                         </form>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Stine</td>
-                                    <td>Aktiv</td>
-                                    <td>Økonomi</td>
-                                    <td><button class="btn btn-default">Edit</button></td>
-                                    <td><button class="btn btn-default">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Røde</td>
-                                    <td>Aktiv</td>
-                                    <td>Bruger</td>
-                                    <td><button class="btn btn-default">Edit</button></td>
-                                    <td><button class="btn btn-default">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Tine</td>
-                                    <td>Aktiv</td>
-                                    <td>Bruger</td>
-                                    <td><button class="btn btn-default">Edit</button></td>
-                                    <td><button class="btn btn-default">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Michael</td>
-                                    <td>Aktiv</td>
-                                    <td>Bruger</td>
-                                    <td><button class="btn btn-default">Edit</button></td>
-                                    <td><button class="btn btn-default">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Marie</td>
-                                    <td>Aktiv</td>
-                                    <td>Bruger</td>
-                                    <td><button class="btn btn-default">Edit</button></td>
-                                    <td><button class="btn btn-default">Delete</button></td>
-                                </tr>
+
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <!--Objektet er IKKE navnet, men typen.. Den skal bare lede efter en slags-->
-                <form th:object="${user}" class="form-inline" action="/adduser" method="POST">
+                <!--<form th:object="${user}" class="form-inline" action="/adduser" method="POST">-->
 
-                    <div class="form-group">
-                        <label for="nameField">Navn:</label>
-                        <input th:field="*{name}" type="text" id="nameField" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="passwordField">Password:</label>
-                        <input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>
-                    </div>
-                    <input class="btn btn-default" type="submit" value="Lav ny bruger"/>
-                </form>
+                    <!--<div class="form-group">-->
+                        <!--<label for="nameField">Navn:</label>-->
+                        <!--<input th:field="*{name}" type="text" id="nameField" class="form-control"/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="passwordField">Password:</label>-->
+                        <!--<input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>-->
+                    <!--</div>-->
+                    <!--<input class="btn btn-default" type="submit" value="Lav ny bruger"/>-->
+                <!--</form>-->
             </div>
             <div class="col-md-1 col-lg-2"></div>
         </div>

@@ -1,12 +1,16 @@
 package com.lysthuset.ourbudget.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserViewController {
 
-    public String getUserview(){
 
-        return "userView";
+    @RequestMapping(value = "/userview", method = RequestMethod.GET)
+    public String showUserview(){
+        return "userview";
     }
+
 }
