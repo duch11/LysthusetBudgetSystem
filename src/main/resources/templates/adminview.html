@@ -19,9 +19,8 @@
         </div>
         <div class="row">
             <div class="col-lg-10">
-                <h1>AdminPanel</h1>
-
-                <form th:object="${user}" class="form" style="margin-bottom: 20px;" action="/adduser" method="POST">
+                <h1>Admin panel</h1>
+                <form th:object="${user}" class="form-inline" style="margin-bottom: 40px;" action="/adduser" method="POST">
 
                     <div class="form-group col-lg-3">
                         <label for="nameField">Navn:</label>
@@ -32,10 +31,10 @@
                         <input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>
                     </div>
 
-                    <div class="checkbox">
+                    <div class="checkbox-inline">
                         <label><input type="checkbox" value=""/>Aktiv?</label>
                     </div>
-                    <div class="checkbox">
+                    <div class="checkbox-inline">
                         <label><input type="checkbox" value=""/>Admin</label>
                     </div>
 

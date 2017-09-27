@@ -2,13 +2,13 @@ package com.lysthuset.ourbudget.model.repositories;
 
 import com.lysthuset.ourbudget.model.entities.User;
 
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.Iterator;
+import java.util.List;
 
 public class UserArraylistRepository implements IUserRepository {
 
-    ArrayList<User> users = new ArrayList<>();
+    List<User> users = new ArrayList<User>();
 
 
     public UserArraylistRepository(){
@@ -27,7 +27,7 @@ public class UserArraylistRepository implements IUserRepository {
     }
 
     @Override
-    public ArrayList<User> readAll() {
+    public List<User> readAll() {
         return users;
     }
 
@@ -51,9 +51,13 @@ public class UserArraylistRepository implements IUserRepository {
 
     @Override
     public void delete(String id) {
-        for (User u : users) {
-            if(u.getUserID() == id){
-                users.remove(u);
+        for (Iterator<User> userIterator = users.iterator(); userIterator.hasNext();) {
+            User userCompare = userIterator.next();
+            if(userCompare.getUserID().equals(id)){
+                userIterator.remove();
+                System.out.println("user: " + userCompare.getName() + " deleted.");
+            } else {
+                System.out.println("no deletion");
             }
         }
     }
