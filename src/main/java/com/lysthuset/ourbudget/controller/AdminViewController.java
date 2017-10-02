@@ -42,7 +42,7 @@ public class AdminViewController {
 
     @RequestMapping(value = {"/deleteuser"}, method = RequestMethod.POST)
     public String deleteusers(Model model,
-                             @RequestParam(value = "deleteid") String id) {
+                             @RequestParam(value = "deleteid") int id) {
         usersRepo.delete(id);
         usersArray = usersRepo.readAll();
         System.out.println("Delete function called");

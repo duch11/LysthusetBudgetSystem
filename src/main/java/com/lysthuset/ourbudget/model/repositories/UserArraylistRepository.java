@@ -8,16 +8,16 @@ import java.util.List;
 
 public class UserArraylistRepository implements IUserRepository {
 
-    List<User> users = new ArrayList<User>();
+    List<User> users = new ArrayList<>();
 
 
     public UserArraylistRepository(){
-        users.add(new User("Jonas","123", true, true));
-        users.add(new User("Stine","123"));
-        users.add(new User("Røde","123"));
-        users.add(new User("Marie","123"));
-        users.add(new User("Michael","123"));
-        users.add(new User("Tine","123"));
+        users.add(new User(1,"Jonas","123", true, true));
+        users.add(new User(2,"Stine","123", true, true));
+        users.add(new User(3,"Røde","123", true, true));
+        users.add(new User(4,"Marie","123", true, true));
+        users.add(new User(5,"Michael","123", true, true));
+        users.add(new User(6,"Tine","123", true, true));
     }
 
 
@@ -32,7 +32,7 @@ public class UserArraylistRepository implements IUserRepository {
     }
 
     @Override
-    public User read(String id) {
+    public User read(int id) {
         for (User u : users) {
             if(u.getUserID() == id){
                 return u;
@@ -50,10 +50,10 @@ public class UserArraylistRepository implements IUserRepository {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(int id) {
         for (Iterator<User> userIterator = users.iterator(); userIterator.hasNext();) {
             User userCompare = userIterator.next();
-            if(userCompare.getUserID().equals(id)){
+            if(userCompare.getUserID() == id){
                 userIterator.remove();
                 System.out.println("user: " + userCompare.getName() + " deleted.");
             } else {

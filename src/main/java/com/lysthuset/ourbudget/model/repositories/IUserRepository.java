@@ -12,10 +12,10 @@ public interface IUserRepository {
     public List<User> readAll();
 
     //read specific
-    public User read(String id);
+    public User read(int id);
 
     //
     public void update(User user);
 
-    public void delete(String id);
+    public void delete(int id);
 }

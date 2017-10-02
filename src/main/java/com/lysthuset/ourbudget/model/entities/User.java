@@ -3,28 +3,17 @@ package com.lysthuset.ourbudget.model.entities;
 import java.util.UUID;
 
 public class User {
-    private String userID;
+    private int userID;
     private String name;
     private String pass;
     private boolean active;
     private boolean admin = false;
 
     public User(){
-        this.userID = UUID.randomUUID().toString();
-        this.active = true;
-
     }
 
-    //admin dummy tester NAVN PASS
-    public User(String name, String pass) {
-        this.userID = UUID.randomUUID().toString();
-        this.name = name;
-        this.pass = pass;
-        this.active = true;
-    }
-
-    public User(String name, String pass, boolean active, boolean admin) {
-        this.userID = UUID.randomUUID().toString();
+    public User(int userID ,String name, String pass, boolean active, boolean admin) {
+        this.userID = userID;
         this.name = name;
         this.pass = pass;
         this.active = active;
@@ -42,7 +31,7 @@ public class User {
         this.name = name;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
