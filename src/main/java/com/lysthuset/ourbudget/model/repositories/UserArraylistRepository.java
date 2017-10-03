@@ -11,6 +11,7 @@ public class UserArraylistRepository implements IUserRepository {
     List<User> users = new ArrayList<>();
 
 
+/*
     public UserArraylistRepository(){
         users.add(new User(1,"Jonas","123", true, true));
         users.add(new User(2,"Stine","123", true, true));
@@ -19,6 +20,7 @@ public class UserArraylistRepository implements IUserRepository {
         users.add(new User(5,"Michael","123", true, true));
         users.add(new User(6,"Tine","123", true, true));
     }
+*/
 
 
     @Override

@@ -1,8 +1,10 @@
 package com.lysthuset.ourbudget.model.repositories;
 
 import com.lysthuset.ourbudget.model.entities.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 public interface IUserRepository {
     //create

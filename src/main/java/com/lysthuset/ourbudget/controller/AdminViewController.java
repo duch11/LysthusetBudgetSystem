@@ -3,6 +3,8 @@ package com.lysthuset.ourbudget.controller;
 import com.lysthuset.ourbudget.model.entities.User;
 import com.lysthuset.ourbudget.model.repositories.IUserRepository;
 import com.lysthuset.ourbudget.model.repositories.UserArraylistRepository;
+import com.lysthuset.ourbudget.model.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +17,16 @@ import java.util.List;
 @Controller
 public class AdminViewController {
 
-    private IUserRepository usersRepo = new UserArraylistRepository();
-    private List<User> usersArray = usersRepo.readAll();
+    @Autowired
+    IUserRepository usersRepo = new UserRepository();
+
+    List<User> usersArray;
 
     @RequestMapping(value = {"/adminpanel", "/deleteuser", "/adduser"}, method = RequestMethod.GET)
     public String adminpanel(Model model){
+        usersArray = usersRepo.readAll();
+
+
         model.addAttribute("users", usersArray);
         model.addAttribute("user", new User());
         return "adminview";
