@@ -22,13 +22,13 @@ public class AdminViewController {
 
     List<User> usersArray;
 
-    @RequestMapping(value = {"/adminpanel", "/deleteuser", "/adduser"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/adminpanel", "/deleteuser", "/adduser", "/edituser", "/error"}, method = RequestMethod.GET)
     public String adminpanel(Model model){
         usersArray = usersRepo.readAll();
 
-
         model.addAttribute("users", usersArray);
-        model.addAttribute("user", new User());
+        model.addAttribute("useredit", new User());
+        model.addAttribute("useradd", new User());
         return "adminview";
     }
 
@@ -36,8 +36,17 @@ public class AdminViewController {
     @RequestMapping(value = {"/adduser"}, method = RequestMethod.POST)
     public String addUser(Model model, @ModelAttribute User myUser) {
         if(myUser.getName() != "" && myUser.getPass() != "" && myUser.getPass() != null){
-            System.out.println("her er værdierne: " + myUser.getName() + " " + myUser.getPass());
+            System.out.println("her er værdierne: " + myUser.getName() + " " + myUser.getPass() +" " + myUser.isActive() + " " + myUser.isAdmin());
             usersRepo.create(myUser);
+            usersArray = usersRepo.readAll();
+        }
+        return adminpanel(model);
+    }
+
+    @RequestMapping(value = {"/edituser"}, method = RequestMethod.POST)
+    public String editUser(Model model, @ModelAttribute User myUser) {
+        if(myUser.getName() != "" && myUser.getPass() != "" && myUser.getPass() != null){
+            usersRepo.update(myUser);
             usersArray = usersRepo.readAll();
         }
         return adminpanel(model);

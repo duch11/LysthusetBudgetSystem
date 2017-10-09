@@ -13,6 +13,7 @@ public class User {
     }
 
     public User(int userID ,String name, String pass, boolean active, boolean admin) {
+
         this.userID = userID;
         this.name = name;
         this.pass = pass;
@@ -21,7 +22,17 @@ public class User {
     }
 
 
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 
     public String getName() {
         return name;

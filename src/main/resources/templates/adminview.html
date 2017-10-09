@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
@@ -18,95 +19,143 @@
             <div th:replace="fragments/header :: header"/>
         </div>
         <div class="row">
-            <div class="col-lg-10">
-                <h1>Admin panel</h1>
-                <form th:object="${user}" class="form-inline" style="margin-bottom: 40px;" action="/adduser" method="POST">
-
-                    <div class="form-group col-lg-3">
-                        <label for="nameField">Navn:</label>
-                        <input th:field="*{name}" type="text" id="nameField" class="form-control"/>
-                    </div>
-                    <div class="form-group col-lg-3">
-                        <label for="passwordField">Password:</label>
-                        <input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>
-                    </div>
-
-                    <div class="checkbox-inline">
-                        <label><input type="checkbox" value=""/>Aktiv?</label>
-                    </div>
-                    <div class="checkbox-inline">
-                        <label><input type="checkbox" value=""/>Admin</label>
-                    </div>
-
-                    <input class="btn btn-default" type="submit" value="Lav ny bruger"/>
-                </form>
-            </div>
+            <h1>Admin panel</h1>
+            <h2>
+                <button type="button" style="background-color: darkgreen" class="btn btn-primary" data-toggle="modal" data-target="#createUser">Create User</button>
+            </h2>
         </div>
+        <div class="row"></div>
+
         <div class="row">
-            <div class="col-lg-10">
+            <div class="panel panel-default">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                            Brugere
-                    </div>
-                    <div class="panel-body">
+                <div class="panel-heading">
+                        Brugere
+                </div>
+                <div class="panel-body">
 
-                        <div class="table-responsive ">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <td>Navn</td>
-                                    <td>Status</td>
-                                    <td>Admin</td>
-                                    <td>UUID</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="user: ${users}">
-                                    <td th:text="${user.getName()}">Jonas</td>
-                                    <td th:text="${user.isActive()}">Aktiv</td>
-                                    <td th:text="${user.isAdmin()}">Admin</td>
-                                    <td th:text="${user.getUserID()}">UUID</td>
-                                    <td>
-                                        <button type="submit" class="btn btn-default">Edit</button>
-                                    </td>
-                                    <td>
-                                        <form th:attr="action='/deleteuser'" method="POST">
-                                            <input th:attr="value=${user.getUserID()}" type="hidden" name="deleteid"></input>
-                                            <button type="submit" class="btn btn-default">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                    <div class="table-responsive ">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <td>Navn</td>
+                                <td>Status</td>
+                                <td>Admin</td>
+                                <td>UUID</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <!--/*@thymesVar id="users" type="java.util.ArrayList<com.lysthuset.ourbudget.model.entities.User>"*/-->
+                            <tr th:each="user : ${users}">
+                                <td th:text="${user.getName()}" class="text-capitalize">Jonas</td>
+                                <td th:text="${user.isActive()}" class="text-capitalize">Aktiv</td>
+                                <td th:text="${user.isAdmin()}" class="text-capitalize">Admin</td>
+                                <td th:text="${user.getUserID()}">UUID</td>
+                                <td>
+                                    <button type="button" class="btn btn-default" style="background-color: goldenrod" data-toggle="modal" th:attr="data-target='#' + ${user.getUserID()}">Edit</button>
+                                </td>
+                                <td>
+                                    <form th:attr="action='/deleteuser'" method="POST">
+                                        <input th:attr="value=${user.getUserID()}" type="hidden" name="deleteid"></input>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
 
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <!--Objektet er IKKE navnet, men typen.. Den skal bare lede efter en slags-->
-                <!--<form th:object="${user}" class="form-inline" action="/adduser" method="POST">-->
-
-                    <!--<div class="form-group">-->
-                        <!--<label for="nameField">Navn:</label>-->
-                        <!--<input th:field="*{name}" type="text" id="nameField" class="form-control"/>-->
-                    <!--</div>-->
-                    <!--<div class="form-group">-->
-                        <!--<label for="passwordField">Password:</label>-->
-                        <!--<input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>-->
-                    <!--</div>-->
-                    <!--<input class="btn btn-default" type="submit" value="Lav ny bruger"/>-->
-                <!--</form>-->
             </div>
-            <div class="col-md-1 col-lg-2"></div>
         </div>
     </div>
 
+    <div th:each="user : ${users}">
+
+        <div th:attr="id=${user.getUserID()}" class="modal fade" role="dialog">
+
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+
+                    <div class="modal-header" style="background-color: goldenrod">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 th:text="${user.getName()}" class="modal-title text-capitalize">Modal Header</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <form th:object="${useredit}" class="form" style="margin-bottom: 40px;" action="/edituser" method="POST">
+
+                            <label class="sr-only" for="nameEditField">Navn:</label>
+                            <input th:value="${user.getName()}" type="text" id="nameEditField" th:name="name" placeholder="Navn" class="form-control"/>
+
+                            <input th:attr="value=${user.getUserID()}" type="hidden" th:name="userID"/>
+
+                            <label class="sr-only" for="passwordEditField">Password:</label>
+                            <input th:value="${user.getPass()}" type="password" placeholder="Password" th:name="pass" class="form-control" id="passwordEditField"/>
+
+                            <select th:name="active" class="form-control">
+                                <option th:value="true" selected="selected">Active</option>
+                                <option th:value="false">Inactive</option>
+                            </select>
+
+                            <div class="modal-footer">
+                                <input class="btn btn-primary" type="submit" value="tilføj ændringer"/>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="createUser" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: darkgreen; color: whitesmoke;">
+                    <button type="button" class="close" data-dismiss="modal" style="color: whitesmoke;">&times;</button>
+                    <h3 class="modal-title">Create User</h3>
+                </div>
+                <div class="modal-body">
+                    <form th:object="${useradd}" class="form" style="margin-bottom: 40px;" action="/adduser" method="POST">
+                        <label class="sr-only" for="nameField">Navn:</label>
+                        <input th:field="*{name}" type="text" id="nameField" placeholder="Navn" class="form-control"/>
+                        <label class="sr-only" for="passwordField">Password:</label>
+                        <input th:field="*{pass}" type="text" placeholder="Password" class="form-control" id="passwordField"/>
+                        <select th:name="active" class="form-control">
+                            <option th:value="true" selected="selected">Active</option>
+                            <option th:value="false">Inactive</option>
+                        </select>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary" type="submit" value="Lav ny bruger"/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- jQuery library -->
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 
 </html>
