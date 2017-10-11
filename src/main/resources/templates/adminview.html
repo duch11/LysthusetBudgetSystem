@@ -57,7 +57,7 @@
                                 </td>
                                 <td>
                                     <form th:attr="action='/deleteuser'" method="POST">
-                                        <input th:attr="value=${user.getUserID()}" type="hidden" name="deleteid"></input>
+                                        <input th:attr="value=${user.getUserID()}" type="hidden" name="deleteid"/>
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>

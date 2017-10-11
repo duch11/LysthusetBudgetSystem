@@ -15,24 +15,13 @@
             <li>
                 <a href="/">Overblik</a>
             </li>
-            <li>
-                <a href="/userview">Røde</a>
+            <li th:each="user : ${users}">
+                <a href="/userview?userID=" th:text="${user.getName()}" th:attrappend="href=${user.getUserID()}"/>
             </li>
             <li>
-                <a href="/userview">Tine</a>
+                <a href="/adminpanel">ADMIN</a>
             </li>
-            <li>
-                <a href="/userview">Jonas</a>
-            </li>
-            <li>
-                <a href="/userview">Marie</a>
-            </li>
-            <li>
-                <a href="/userview">Michael</a>
-            </li>
-            <li>
-                <a href="/userview">Stine</a>
-            </li>
+
             <!--<li>
                 <a href="/budgetview">BudgetMonth</a>
             </li>-->
