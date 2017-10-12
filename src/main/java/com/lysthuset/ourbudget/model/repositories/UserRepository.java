@@ -18,14 +18,14 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public void create(User user) {
-        jdbc.update("INSERT User(name, pass, active, admin) VALUES('" + user.getName() + "','" + user.getPass() + "'," + user.isActive() + "," + user.isAdmin() + ")");
+        jdbc.update("INSERT user(name, pass, active, admin) VALUES('" + user.getName() + "','" + user.getPass() + "'," + user.isActive() + "," + user.isAdmin() + ")");
     }
 
     @Override
     public List<User> readAll() {
         List<User> users = new ArrayList<>();
         SqlRowSet sqlRowSet;
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM User");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user");
 
         while(sqlRowSet.next()){
 
@@ -47,7 +47,7 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public User read(int id) {
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM User WHERE ID =" + id);
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE ID =" + id);
         if(sqlRowSet.next()){
             return new User(sqlRowSet.getInt("ID"), sqlRowSet.getString("name"), sqlRowSet.getString("pass"), sqlRowSet.getBoolean("Active"), sqlRowSet.getBoolean("Admin"));
         }
@@ -57,12 +57,12 @@ public class UserRepository implements IUserRepository {
     @Override
     public void update(User user) {
         // strings i SQL skal omringes af 'string' quotes derfor '" + booo.getBoo() + "'
-        jdbc.update("UPDATE User SET name ='" + user.getName() + "', pass = '" + user.getPass() + "', active = " + user.isActive() + " WHERE id =" + user.getUserID());
+        jdbc.update("UPDATE user SET name ='" + user.getName() + "', pass = '" + user.getPass() + "', active = " + user.isActive() + " WHERE id =" + user.getUserID());
     }
 
     @Override
     public void delete(int id) {
-        jdbc.update("DELETE FROM User WHERE ID = " + id);
+        jdbc.update("DELETE FROM user WHERE ID = " + id);
     }
 
 }
