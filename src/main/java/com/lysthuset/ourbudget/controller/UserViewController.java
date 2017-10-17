@@ -20,7 +20,7 @@ public class UserViewController {
     public String showUserview(Model model, @RequestParam("userID") int userID){
         model.addAttribute("users", usersRepo.readAll());
         model.addAttribute("user", usersRepo.read(userID));
-
+        model.addAttribute("currentID", userID);
         return "userview";
     }
 
