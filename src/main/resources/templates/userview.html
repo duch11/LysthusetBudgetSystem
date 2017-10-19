@@ -117,30 +117,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>13/1 - 2017</td>
-                                    <td>Olie i netto</td>
-                                    <td>Dagligvarer</td>
-                                    <td>13,95kr</td>
+                                <tr th:each="payment : ${payments}">
+                                    <td class="text-capitalize">13/1 - 2017</td>
+                                    <td th:text="${payment.getDescription()}" class="text-capitalize">Description</td>
+                                    <td th:text="${payment.getCategory()}" class="text-capitalize">Category</td>
+                                    <td th:text="${payment.getAmount()} + ' kr'">Amount</td>
                                 </tr>
-                                <tr>
-                                    <td>12/1 - 2017</td>
-                                    <td>Søstrene grene</td>
-                                    <td>Krydderier</td>
-                                    <td>60,00kr</td>
-                                </tr>
-                                <tr>
-                                    <td>9/1 - 2017</td>
-                                    <td>Netto - Kaffe</td>
-                                    <td>Kaffe</td>
-                                    <td>200,00kr</td>
-                                </tr>
-                                <tr>
-                                    <td>10/1 - 2017</td>
-                                    <td>Silvan - plæneklipper</td>
-                                    <td>Større indkøb</td>
-                                    <td>500,00kr</td>
-                                </tr>
+
                                 </tbody>
                             </table>
                         </div>

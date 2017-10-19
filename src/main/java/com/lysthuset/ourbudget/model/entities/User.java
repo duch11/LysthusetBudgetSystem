@@ -1,6 +1,5 @@
 package com.lysthuset.ourbudget.model.entities;
 
-import java.util.UUID;
 
 public class User {
     private int userID;
