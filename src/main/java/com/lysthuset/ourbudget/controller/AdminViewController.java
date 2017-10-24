@@ -4,6 +4,7 @@ import com.lysthuset.ourbudget.model.entities.User;
 import com.lysthuset.ourbudget.model.repositories.IUserRepository;
 import com.lysthuset.ourbudget.model.repositories.UserArraylistRepository;
 import com.lysthuset.ourbudget.model.repositories.UserRepository;
+import com.lysthuset.ourbudget.model.utilities.HeaderHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +23,15 @@ public class AdminViewController {
 
     List<User> usersArray;
 
+    HeaderHelper helper = new HeaderHelper();
+
     @RequestMapping(value = {"/adminpanel", "/deleteuser", "/adduser", "/edituser", "/error"}, method = RequestMethod.GET)
     public String adminpanel(Model model){
         usersArray = usersRepo.readAll();
 
         model.addAttribute("users", usersArray);
         model.addAttribute("useredit", new User());
+        helper.showHeader(model, usersRepo, -1);
         model.addAttribute("useradd", new User());
         return "adminview";
     }

@@ -16,8 +16,8 @@
                 <a href="/">Overblik</a>
             </li>
             <li th:each="user : ${users}">
-                <a th:if="${user.getUserID() == currentID}" class="btn-danger" href="/userview?userID=" th:text="${user.getName()}" th:attrappend="href=${user.getUserID()}"/>
-                <a th:if="${user.getUserID() != currentID}" href="/userview?userID=" th:text="${user.getName()}" th:attrappend="href=${user.getUserID()}"/>
+                <a th:if="${user.getUserID() == currentUser.getUserID()}" style="background-color: brown; color: whitesmoke;" href="/userview?userID=" th:text="${#strings.capitalize(user.getName())}" th:attrappend="href=${user.getUserID()}"/>
+                <a th:if="${user.getUserID() != currentUser.getUserID()}" href="/userview?userID=" th:text="${#strings.capitalize(user.getName())}" th:attrappend="href=${user.getUserID()}"/>
 
             </li>
             <li>
