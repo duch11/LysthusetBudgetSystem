@@ -2,6 +2,7 @@ package com.lysthuset.ourbudget.controller;
 
 import com.lysthuset.ourbudget.model.repositories.IUserRepository;
 import com.lysthuset.ourbudget.model.repositories.UserRepository;
+import com.lysthuset.ourbudget.model.utilities.HeaderHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,8 @@ public class BudgetViewController {
 
     @RequestMapping(value = "/budgetview", method = RequestMethod.GET)
     public String budgetview(Model model){
-        model.addAttribute("users",usersRepo.readAll());
+        HeaderHelper helper = new HeaderHelper();
+        helper.showHeader(model, usersRepo, -1);
         return "budgetview";
     }
 }
