@@ -8,6 +8,7 @@ public class User {
     private boolean active;
     private boolean admin = false;
 
+
     public User(){
     }
 
@@ -18,6 +19,7 @@ public class User {
         this.pass = pass;
         this.active = active;
         this.admin = admin;
+
     }
 
 
