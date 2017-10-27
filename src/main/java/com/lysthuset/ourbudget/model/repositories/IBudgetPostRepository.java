@@ -1,5 +1,7 @@
 package com.lysthuset.ourbudget.model.repositories;
 
-public interface IBudgetRepository {
+public interface IBudgetPostRepository {
+
+
 
 }

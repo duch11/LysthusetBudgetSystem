@@ -21,9 +21,19 @@ public class PaymentRepository implements IPaymentRepository {
     public List<Payment> readPaymentsFor(User user) {
         List<Payment> paymentsForUser = new ArrayList<Payment>();
 
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM payments INNER JOIN LysthusetBudgetSystem.categories ON payments.categoryID=categories.ID WHERE userID=" + user.getUserID());
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM payments INNER JOIN label_paymentcategory ON label_paymentcategory.ID=payments.labelID WHERE userID=" + user.getUserID());
         while(sqlRowSet.next()){
-            paymentsForUser.add(new Payment(sqlRowSet.getInt("ID"),sqlRowSet.getString("category_name"),sqlRowSet.getInt("userID"),sqlRowSet.getInt("monthID"),sqlRowSet.getBigDecimal("amount"),sqlRowSet.getString("description")));
+            paymentsForUser.add(
+                    new Payment(
+                            sqlRowSet.getInt("ID"),
+                            sqlRowSet.getString("label"),
+                            sqlRowSet.getInt("userID"),
+                            sqlRowSet.getInt("FK_month_ID"),
+                            sqlRowSet.getBigDecimal("amount"),
+                            sqlRowSet.getString("description")
+                    )
+            );
+
 
             int id = sqlRowSet.getInt("ID");
             String desc =  sqlRowSet.getString("description");
