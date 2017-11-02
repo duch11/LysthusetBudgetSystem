@@ -13,7 +13,6 @@ public class UserRepository implements IUserRepository {
 
     @Autowired
     JdbcTemplate jdbc;
-    //private SqlRowSet sqlRowSet;
 
 
     @Override
@@ -29,14 +28,14 @@ public class UserRepository implements IUserRepository {
 
         while(sqlRowSet.next()){
 
-            users.add(new User(sqlRowSet.getInt("ID"), sqlRowSet.getString("name"),sqlRowSet.getString("pass"), sqlRowSet.getBoolean("Active"), sqlRowSet.getBoolean("Admin")));
+            users.add(new User(sqlRowSet.getInt("user_ID"), sqlRowSet.getString("name"),sqlRowSet.getString("pass"), sqlRowSet.getBoolean("active"), sqlRowSet.getBoolean("admin")));
 
 
             //NOTE TO SELF!!
             //Autowire kan være et problem ved NULL pointer
             //DON'T COPY PASTE CODE! LOL Ellers tjek det ordentligt din boev.
             // TEST i Konsollen
-            int id = sqlRowSet.getInt("ID");
+            int id = sqlRowSet.getInt("user_ID");
             String name =  sqlRowSet.getString("name");
             String pass =  sqlRowSet.getString("pass");
             System.out.println(id + " " + name + " " + pass);
@@ -47,9 +46,9 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public User read(int id) {
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE ID =" + id);
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE user_ID =" + id);
         if(sqlRowSet.next()){
-            return new User(sqlRowSet.getInt("ID"), sqlRowSet.getString("name"), sqlRowSet.getString("pass"), sqlRowSet.getBoolean("Active"), sqlRowSet.getBoolean("Admin"));
+            return new User(sqlRowSet.getInt("user_ID"), sqlRowSet.getString("name"), sqlRowSet.getString("pass"), sqlRowSet.getBoolean("active"), sqlRowSet.getBoolean("admin"));
         }
         return new User(-1, "found no user", "found no user", false, false);
     }
@@ -57,12 +56,12 @@ public class UserRepository implements IUserRepository {
     @Override
     public void update(User user) {
         // strings i SQL skal omringes af 'string' quotes derfor '" + booo.getBoo() + "'
-        jdbc.update("UPDATE user SET name ='" + user.getName() + "', pass = '" + user.getPass() + "', active = " + user.isActive() + " WHERE id =" + user.getUserID());
+        jdbc.update("UPDATE user SET name ='" + user.getName() + "', pass = '" + user.getPass() + "', active = " + user.isActive() + " WHERE user_id =" + user.getUserID());
     }
 
     @Override
     public void delete(int id) {
-        jdbc.update("DELETE FROM user WHERE ID = " + id);
+        jdbc.update("DELETE FROM user WHERE user_ID = " + id);
     }
 
 }

@@ -5,11 +5,15 @@ import java.util.ArrayList;
 
 public class BudgetPost {
 
+    private int budgetPostID;
     private BigDecimal total;
+    private String label;
     private ArrayList<User> payees;
 
-    public BudgetPost(BigDecimal amount, ArrayList<User> payees) {
-        this.total = amount;
+
+    public BudgetPost(int budgetPostID, BigDecimal total, ArrayList<User> payees) {
+        this.budgetPostID = budgetPostID;
+        this.total = total;
         this.payees = payees;
     }
 

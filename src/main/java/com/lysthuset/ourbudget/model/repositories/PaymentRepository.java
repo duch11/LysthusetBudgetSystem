@@ -21,25 +21,56 @@ public class PaymentRepository implements IPaymentRepository {
     public List<Payment> readPaymentsFor(User user) {
         List<Payment> paymentsForUser = new ArrayList<Payment>();
 
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM payments INNER JOIN label_paymentcategory ON label_paymentcategory.ID=payments.labelID WHERE userID=" + user.getUserID());
-        while(sqlRowSet.next()){
+        //Joiner payments og paymentlabels på deres FK og ID Finder en bestemt brugers payments (ikke måned specifik)
+        //TODO: tilføj måned parameter
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM payments INNER JOIN paymentlabels ON FK_PayLabel_ID=PaymentLabel_ID WHERE FK_user_ID=" + user.getUserID());
+        while (sqlRowSet.next()) {
             paymentsForUser.add(
                     new Payment(
-                            sqlRowSet.getInt("ID"),
+                            sqlRowSet.getInt("Payment_ID"),
                             sqlRowSet.getString("label"),
-                            sqlRowSet.getInt("userID"),
+                            sqlRowSet.getInt("FK_user_ID"),
                             sqlRowSet.getInt("FK_month_ID"),
                             sqlRowSet.getBigDecimal("amount"),
                             sqlRowSet.getString("description")
                     )
             );
 
-
-            int id = sqlRowSet.getInt("ID");
-            String desc =  sqlRowSet.getString("description");
-            BigDecimal amount =  sqlRowSet.getBigDecimal("amount");
-            System.out.println(id + " " + desc + " " + amount + " " + sqlRowSet.getString("category_name"));
+            //TEST Console CODE
+            int id = sqlRowSet.getInt("Payment_ID");
+            String desc = sqlRowSet.getString("description");
+            BigDecimal amount = sqlRowSet.getBigDecimal("amount");
+            System.out.println(id + " " + desc + " " + amount + " " + sqlRowSet.getString("label"));
         }
         return paymentsForUser;
+    }
+
+    @Override
+    public ArrayList<Payment> readAll() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Payment> readPaymentsForMonth(int monthID) {
+
+        List<Payment> paymentsForMonth = new ArrayList<Payment>();
+
+        //Joiner payments og paymentlabels på deres FK og ID Finder en bestemt brugers payments (ikke måned specifik)
+        //TODO: tilføj måned parameter
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM payments INNER JOIN paymentlabels ON FK_PayLabel_ID=PaymentLabel_ID WHERE FK_month_ID=" + monthID);
+        while (sqlRowSet.next()) {
+            paymentsForMonth.add(
+                    new Payment(
+                            sqlRowSet.getInt("Payment_ID"),
+                            sqlRowSet.getString("label"),
+                            sqlRowSet.getInt("FK_user_ID"),
+                            sqlRowSet.getInt("FK_month_ID"),
+                            sqlRowSet.getBigDecimal("amount"),
+                            sqlRowSet.getString("description")
+                    )
+            );
+
+        }
+        return (ArrayList<Payment>) paymentsForMonth;
     }
 }
