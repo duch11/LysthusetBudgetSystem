@@ -20,15 +20,19 @@ public class MonthRepository implements IMonthRepository {
 
         if(sqlRowSet.next()){
             monthID = sqlRowSet.getInt("month_ID");
+            System.out.println("Month found!");
+
         } else {
-            System.out.println("no existance!");
+            System.out.println("Month not found!");
         }
+        System.out.println("GetMonthID Called!");
+
 
         return monthID;
     }
 
     /*@Override
-    public BudgetMonth getBudgetFor(int year, String month) {
+    public Budget getBudgetFor(int year, String month) {
 
         //get monthID Based on provided month and year
         int ID = getMonthID(year, month);

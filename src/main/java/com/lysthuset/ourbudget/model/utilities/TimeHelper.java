@@ -6,19 +6,17 @@ import java.time.format.DateTimeFormatter;
 public class TimeHelper {
 
     public int getYear(int offset){
-        int year = Integer.parseInt(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy")));
+        int year = Integer.parseInt(LocalDate.now().plusMonths(offset).format(DateTimeFormatter.ofPattern("yyyy")));
 
-        return year + offset;
+        return year;
     }
 
     public String getMonth(int offset){
         int month = Integer.parseInt(
-                LocalDate.now().format(
+                LocalDate.now().plusMonths(offset).format(
                         DateTimeFormatter.ofPattern("MM")
                 )
         );
-
-        month = month + offset % 12;
 
         switch (month){
             case 1:

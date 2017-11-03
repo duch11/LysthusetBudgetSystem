@@ -20,11 +20,11 @@
                     <!--Objektet er IKKE navnet, men typen.. Den skal bare lede efter en slags-->
                     <form th:object="${user}" class="form" action="/login" method="POST">
                         <div class="form-group">
-                            <label for="nameField">Navn:</label>
+                            <category for="nameField">Navn:</category>
                             <input th:field="*{name}" type="text" id="nameField" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="passwordField">Password:</label>
+                            <category for="passwordField">Password:</category>
                             <input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>
                         </div>
                         <input style="width: 100%; height: 70px; background-color: darkgreen; color: beige; font-weight:300; font-size: 1.4em; font-weight: bold"  class="btn" type="submit" value="LOGIN"/>

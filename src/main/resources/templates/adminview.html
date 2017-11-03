@@ -89,12 +89,12 @@
                     <div class="modal-body">
                         <form th:object="${useredit}" class="form" style="margin-bottom: 40px;" action="/edituser" method="POST">
 
-                            <label class="sr-only" for="nameEditField">Navn:</label>
+                            <category class="sr-only" for="nameEditField">Navn:</category>
                             <input th:value="${user.getName()}" type="text" id="nameEditField" th:name="name" placeholder="Navn" class="form-control"/>
 
                             <input th:attr="value=${user.getUserID()}" type="hidden" th:name="userID"/>
 
-                            <label class="sr-only" for="passwordEditField">Password:</label>
+                            <category class="sr-only" for="passwordEditField">Password:</category>
                             <input th:value="${user.getPass()}" type="password" placeholder="Password" th:name="pass" class="form-control" id="passwordEditField"/>
 
                             <select th:name="active" class="form-control">
@@ -131,9 +131,9 @@
                 </div>
                 <div class="modal-body">
                     <form th:object="${useradd}" class="form" style="margin-bottom: 40px;" action="/adduser" method="POST">
-                        <label class="sr-only" for="nameField">Navn:</label>
+                        <category class="sr-only" for="nameField">Navn:</category>
                         <input th:field="*{name}" type="text" id="nameField" placeholder="Navn" class="form-control"/>
-                        <label class="sr-only" for="passwordField">Password:</label>
+                        <category class="sr-only" for="passwordField">Password:</category>
                         <input th:field="*{pass}" type="text" placeholder="Password" class="form-control" id="passwordField"/>
                         <select th:name="active" class="form-control">
                             <option th:value="true" selected="selected">Active</option>

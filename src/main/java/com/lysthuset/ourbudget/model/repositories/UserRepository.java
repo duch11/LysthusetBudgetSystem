@@ -35,12 +35,12 @@ public class UserRepository implements IUserRepository {
             //Autowire kan være et problem ved NULL pointer
             //DON'T COPY PASTE CODE! LOL Ellers tjek det ordentligt din boev.
             // TEST i Konsollen
-            int id = sqlRowSet.getInt("user_ID");
+            /*int id = sqlRowSet.getInt("user_ID");
             String name =  sqlRowSet.getString("name");
             String pass =  sqlRowSet.getString("pass");
-            System.out.println(id + " " + name + " " + pass);
+            System.out.println(id + " " + name + " " + pass);*/
         }
-
+        System.out.println("User Repo readAll called!");
         return users;
     }
 

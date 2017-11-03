@@ -6,13 +6,13 @@ import java.util.ArrayList;
 public class BudgetPost {
 
     private int budgetPostID;
+    private BudgetCategory category;
     private BigDecimal total;
-    private String label;
     private ArrayList<User> payees;
 
-
-    public BudgetPost(int budgetPostID, BigDecimal total, ArrayList<User> payees) {
+    public BudgetPost(int budgetPostID, BudgetCategory category, BigDecimal total, ArrayList<User> payees) {
         this.budgetPostID = budgetPostID;
+        this.category = category;
         this.total = total;
         this.payees = payees;
     }
@@ -30,5 +30,9 @@ public class BudgetPost {
         }
         //else not needed
         return false;
+    }
+
+    public BudgetCategory getCategory() {
+        return category;
     }
 }

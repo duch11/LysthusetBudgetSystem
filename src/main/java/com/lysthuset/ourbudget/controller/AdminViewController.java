@@ -19,7 +19,8 @@ public class AdminViewController {
 
     List<User> usersArray;
 
-    HeaderHelper helper = new HeaderHelper();
+    @Autowired
+    HeaderHelper helper;
 
     @RequestMapping(value = {"/adminpanel", "/deleteuser", "/adduser", "/edituser", "/error"}, method = RequestMethod.GET)
     public String adminpanel(Model model){
@@ -27,7 +28,7 @@ public class AdminViewController {
 
         model.addAttribute("users", usersArray);
         model.addAttribute("useredit", new User());
-        helper.showHeader(model, usersRepo, -1);
+        helper.showHeader(model);
         model.addAttribute("useradd", new User());
         return "adminview";
     }

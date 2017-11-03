@@ -71,6 +71,7 @@ public class PaymentRepository implements IPaymentRepository {
             );
 
         }
+        System.out.println("readPaymentsForMonth called!");
         return (ArrayList<Payment>) paymentsForMonth;
     }
 }

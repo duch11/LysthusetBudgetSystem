@@ -82,9 +82,9 @@ DROP TABLE IF EXISTS `label_budgetposts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `label_budgetposts` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `label` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `category` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `label_budgetposts_label_uindex` (`label`)
+  UNIQUE KEY `label_budgetposts_label_uindex` (`category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,7 +108,7 @@ DROP TABLE IF EXISTS `label_paymentcategory`;
 CREATE TABLE `label_paymentcategory` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `label_budgetposts_ID` int(11) NOT NULL,
-  `label` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `category` varchar(100) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `label_payments_label_budgetposts_ID_fk` (`label_budgetposts_ID`),
   CONSTRAINT `label_payments_label_budgetposts_ID_fk` FOREIGN KEY (`label_budgetposts_ID`) REFERENCES `label_budgetposts` (`ID`)

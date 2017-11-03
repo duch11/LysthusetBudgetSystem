@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.2.8-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: LysthusetBudgetSystem
+-- Host: localhost    Database: lysthusetbudgetsystem
 -- ------------------------------------------------------
 -- Server version	10.2.8-MariaDB
 
@@ -51,10 +51,10 @@ DROP TABLE IF EXISTS `bpostlabels`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bpostlabels` (
   `BPostLabel_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `label` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`BPostLabel_ID`),
-  UNIQUE KEY `label_budgetposts_label_uindex` (`category`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `label_budgetposts_label_uindex` (`label`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `bpostlabels` (
 
 LOCK TABLES `bpostlabels` WRITE;
 /*!40000 ALTER TABLE `bpostlabels` DISABLE KEYS */;
-INSERT INTO `bpostlabels` VALUES (2,'Basisting'),(1,'Husleje'),(3,'Kaffe');
+INSERT INTO `bpostlabels` VALUES (2,'Basisting'),(1,'Husleje'),(3,'Kaffe'),(4,'Større Indkøb');
 /*!40000 ALTER TABLE `bpostlabels` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `budgetposts` (
   KEY `budgetposts_label_budgetposts_ID_fk` (`FK_bpostlabel_ID`),
   CONSTRAINT `budgetposts_label_budgetposts_ID_fk` FOREIGN KEY (`FK_bpostlabel_ID`) REFERENCES `bpostlabels` (`BPostLabel_ID`),
   CONSTRAINT `budgetposts_months_monthID_fk` FOREIGN KEY (`FK_month_ID`) REFERENCES `months` (`month_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `budgetposts` (
 
 LOCK TABLES `budgetposts` WRITE;
 /*!40000 ALTER TABLE `budgetposts` DISABLE KEYS */;
-INSERT INTO `budgetposts` VALUES (1,6,21000.00,1),(2,6,180.00,3),(3,6,300.00,2);
+INSERT INTO `budgetposts` VALUES (1,6,21000.00,1),(2,6,180.00,3),(3,6,300.00,2),(5,6,0.00,4);
 /*!40000 ALTER TABLE `budgetposts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +120,7 @@ CREATE TABLE `months` (
 
 LOCK TABLES `months` WRITE;
 /*!40000 ALTER TABLE `months` DISABLE KEYS */;
-INSERT INTO `months` VALUES ('januar',2017,6),('marts',1999,5);
+INSERT INTO `months` VALUES ('marts',1999,5),('november',2017,6);
 /*!40000 ALTER TABLE `months` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,11 +134,11 @@ DROP TABLE IF EXISTS `paymentlabels`;
 CREATE TABLE `paymentlabels` (
   `PaymentLabel_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FK_BPostLabel_ID` int(11) NOT NULL,
-  `category` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `label` varchar(100) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`PaymentLabel_ID`),
   KEY `label_payments_label_budgetposts_ID_fk` (`FK_BPostLabel_ID`),
   CONSTRAINT `label_payments_label_budgetposts_ID_fk` FOREIGN KEY (`FK_BPostLabel_ID`) REFERENCES `bpostlabels` (`BPostLabel_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `paymentlabels` (
 
 LOCK TABLES `paymentlabels` WRITE;
 /*!40000 ALTER TABLE `paymentlabels` DISABLE KEYS */;
-INSERT INTO `paymentlabels` VALUES (1,2,'Olie og Krydderier'),(2,2,'Rengøringsmidler'),(3,3,'Kaffe og Te');
+INSERT INTO `paymentlabels` VALUES (1,2,'Olie og Krydderier'),(2,2,'Rengøringsmidler'),(3,3,'Kaffe og Te'),(4,4,'Store indkøb (vvs, møbler og lign)');
 /*!40000 ALTER TABLE `paymentlabels` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +199,7 @@ CREATE TABLE `user` (
   `active` tinyint(1) DEFAULT 1,
   `admin` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`user_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-27 17:08:50
+-- Dump completed on 2017-11-03 20:24:31

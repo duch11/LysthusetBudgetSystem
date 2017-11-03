@@ -33,7 +33,13 @@
                             <!--<div class="text-center" style="font-size: 30px; font-weight: bold">Januar 2017</div>-->
                             <div class="btn-group">
                                 <a class="btn" style="font-size: 30px;"> &lt; </a>
-                                <div class="btn disabled" style="font-size: 30px; font-weight: bold; opacity: 1; min-width: 300px;">JANUAR 2017</div>
+
+
+
+                                <div th:text="${month}" class="btn disabled text-capitalize" style="font-size: 30px; font-weight: bold; opacity: 1; min-width: 300px;">JANUAR 2017</div>
+
+
+
                                 <a class="btn" style="font-size: 30px;"> &gt; </a>
                             </div>
                         </div>
@@ -47,7 +53,7 @@
                         <div class="panel-heading text-center" style="padding: 5px">
 
                             <!--    TITEL HUSLEJE      -->
-                            <div class="" style="font-size: 20px; font-weight: bold; padding: 0;">Husleje Februar</div>
+                            <div th:text="'Husleje ' + ${nextmonth}" class="" style="font-size: 20px; font-weight: bold; padding: 0;">Husleje Februar</div>
                         </div>
                         <div class="panel-body text-center">
 
@@ -61,45 +67,7 @@
             </div>
             <!--    OVERSIGT SLUT      -->
 
-            <div class="row">
-                <!--    INDTASTNING      -->
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="padding: 5px">
-                            <div class="panelTitle">Tilføj betaling</div>
-                        </div>
-                        <div class="panel-body" style="padding-top: 24px">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label for="date">Dato</label>
-                                    <input id="date" type="date"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="beskrivelse">Beskrivelse</label>
-                                    <input class="form-control" id="beskrivelse" type="text"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="kategori">Kategori</label>
-                                    <select class="form-control" id="kategori">
-                                        <option>Dagligvarer</option>
-                                        <option>Kaffe</option>
-                                        <option>Større Indkøb</option>
-                                        <option>Diverse</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="amount">Beløb</label>
-                                    <input class="form-control" id="amount"/>
-                                </div>
-                                <button class="btn btn-primary" type="submit">+ TILFØJ</button>
-                            </form>
 
-                            <!--<div class="btn-group btn-group-justified">
-                            </div>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!--    UDLÆG LISTE      -->
             <div class="row">
@@ -108,7 +76,7 @@
                     <!--    PANEL HEADING      -->
                     <div class="panel panel-primary">
                         <div class="panel-heading" style="font-size: 20px; font-weight: bold">
-                            Udlæg denne måned
+                            Udlæg denne måned <button type="button" style="background-color: darkgreen" class="btn btn-primary" data-toggle="modal" data-target="#createPayment">Tilføj Udlæg</button>
                         </div>
 
                         <!--    PANEL BODY      -->
@@ -138,6 +106,63 @@
             </div>
             <!--    UDLÆG LISTE SLUT      -->
 
+            <div id="createPayment" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                        <!--MODAL HEADER-->
+                        <div class="modal-header" style="background-color: darkgreen; color: whitesmoke;">
+                            <button type="button" class="close" data-dismiss="modal" style="color: whitesmoke;">&times;</button>
+
+                            <!--TITLE-->
+                            <h3 class="modal-title">Tilføj Udlæg</h3>
+                        </div>
+
+                        <!--MODAL BODY-->
+                        <div class="modal-body">
+
+                            <!--FORM BEGIN-->
+                            <form class="form">
+
+                                <!--PASSWORD-->
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input class="form-control" id="password" type="password"/>
+                                </div>
+
+                                <!--DESCRIPTION-->
+                                <div class="form-group">
+                                    <label for="beskrivelse">Beskrivelse</label>
+                                    <input class="form-control" id="beskrivelse" type="text"/>
+                                </div>
+
+                                <!--KATEGORI-->
+                                <div class="form-group">
+                                    <label for="kategori">Kategori</label>
+                                    <select class="form-control" id="kategori">
+                                        <option th:each="payLabel : ${categories}" th:text="${payLabel.getLabel()}" th:attr="value=${payLabel.getID()}">Dagligvarer</option>
+                                    </select>
+                                </div>
+
+                                <!--AMOUNT-->
+                                <div class="form-group">
+                                    <label for="amount">Beløb</label>
+                                    <input class="form-control" id="amount" type="text"/>
+                                </div>
+
+                                <!--GEM-->
+                                <button class="btn btn-primary" type="submit">GEM</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- jQuery library -->
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>

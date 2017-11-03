@@ -2,14 +2,14 @@ package com.lysthuset.ourbudget.model.entities;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-public class BudgetMonth {
+public class Budget {
     private int monthID;
     private String month;
     private int year;
     private ArrayList<BudgetPost> budgetPosts;
     private ArrayList<Payment> payments;
 
-    public BudgetMonth(int monthID, String month, int year, ArrayList<BudgetPost> budgetPosts, ArrayList<Payment> payments) {
+    public Budget(int monthID, String month, int year, ArrayList<BudgetPost> budgetPosts, ArrayList<Payment> payments) {
         this.monthID = monthID;
         this.month = month;
         this.year = year;
@@ -21,13 +21,13 @@ public class BudgetMonth {
         BigDecimal rent = new BigDecimal(0);
         for (BudgetPost budgetPost : budgetPosts) {
             if (budgetPost.isValidForUser(user)) {
-                rent.add(budgetPost.getShare());
+                rent = rent.add(budgetPost.getShare());
             }
         }
 
         for (Payment payment : payments) {
             if (payment.getUserID() == user.getUserID()) {
-                rent.subtract(payment.getAmount());
+                rent = rent.subtract(payment.getAmount());
             }
         }
         return rent;
@@ -42,4 +42,29 @@ public class BudgetMonth {
         }
         return userPayments;
     }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public ArrayList<PayLabel> getPaymentCategories(){
+        ArrayList<PayLabel> payLabels = new ArrayList<>();
+
+        for(BudgetPost bp : budgetPosts){
+            ArrayList<PayLabel> payLabelsForBP = bp.getCategory().getPayLabels();
+            if(!payLabelsForBP.isEmpty()){
+                for (PayLabel p : payLabelsForBP){
+                    payLabels.add(p);
+                }
+            }
+        }
+
+        return payLabels;
+    }
+
+
 }
