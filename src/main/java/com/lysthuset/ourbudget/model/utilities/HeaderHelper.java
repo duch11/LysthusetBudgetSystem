@@ -1,7 +1,7 @@
 package com.lysthuset.ourbudget.model.utilities;
 
 import com.lysthuset.ourbudget.model.entities.User;
-import com.lysthuset.ourbudget.model.repositories.IUserRepository;
+import com.lysthuset.ourbudget.model.repositories.UserRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
@@ -9,9 +9,9 @@ import org.springframework.ui.Model;
 @Component
 public class HeaderHelper {
 
-    IUserRepository usersRepo;
+    UserRepository usersRepo;
 
-    public HeaderHelper(IUserRepository usersRepo) {
+    public HeaderHelper(UserRepository usersRepo) {
         this.usersRepo = usersRepo;
     }
 

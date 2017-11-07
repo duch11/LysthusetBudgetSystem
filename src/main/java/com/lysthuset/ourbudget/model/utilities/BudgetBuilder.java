@@ -3,9 +3,9 @@ package com.lysthuset.ourbudget.model.utilities;
 import com.lysthuset.ourbudget.model.entities.Budget;
 import com.lysthuset.ourbudget.model.entities.BudgetPost;
 import com.lysthuset.ourbudget.model.entities.Payment;
-import com.lysthuset.ourbudget.model.repositories.IBudgetPostRepository;
-import com.lysthuset.ourbudget.model.repositories.IMonthRepository;
-import com.lysthuset.ourbudget.model.repositories.IPaymentRepository;
+import com.lysthuset.ourbudget.model.repositories.BudgetPostRepository;
+import com.lysthuset.ourbudget.model.repositories.MonthRepository;
+import com.lysthuset.ourbudget.model.repositories.PaymentRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import java.util.ArrayList;
 @Component
 public class BudgetBuilder {
 
-    private IMonthRepository monthRepo;
+    private MonthRepository monthRepo;
 
-    private IBudgetPostRepository budgetPostRepo;
+    private BudgetPostRepository budgetPostRepo;
 
-    private IPaymentRepository paymentRepo;
+    private PaymentRepository paymentRepo;
 
-    public BudgetBuilder(IMonthRepository monthRepo, IPaymentRepository paymentRepo, IBudgetPostRepository budgetPostRepo) {
+    public BudgetBuilder(MonthRepository monthRepo, PaymentRepository paymentRepo, BudgetPostRepository budgetPostRepo) {
         this.paymentRepo = paymentRepo;
         this.monthRepo = monthRepo;
         this.budgetPostRepo = budgetPostRepo;

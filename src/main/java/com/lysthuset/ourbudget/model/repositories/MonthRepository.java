@@ -7,12 +7,11 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class MonthRepository implements IMonthRepository {
+public class MonthRepository {
 
     @Autowired
     JdbcTemplate jdbc;
 
-    @Override
     public int getMonthID(int year, String month){
         int monthID = -1;
 
@@ -31,7 +30,7 @@ public class MonthRepository implements IMonthRepository {
         return monthID;
     }
 
-    /*@Override
+    /*
     public Budget getBudgetFor(int year, String month) {
 
         //get monthID Based on provided month and year
@@ -50,8 +49,6 @@ public class MonthRepository implements IMonthRepository {
         return budget;
     }*/
 
-
-    @Override
     public Boolean createMonth(int year, String month) {
 
         jdbc.update("INSERT INTO months (month, year) VALUES ('"+ month +"', " + year + ")" );

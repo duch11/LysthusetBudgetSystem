@@ -18,16 +18,16 @@ import java.util.ArrayList;
 @Controller
 public class BudgetController {
     @Autowired
-    IUserRepository usersRepo;
+    UserRepository usersRepo;
 
     @Autowired
-    IPaymentRepository paymentRepo;
+    PaymentRepository paymentRepo;
 
     @Autowired
-    IMonthRepository monthRepo;
+    MonthRepository monthRepo;
 
     @Autowired
-    IBudgetPostRepository budgetPostRepo;
+    BudgetPostRepository budgetPostRepo;
 
     @Autowired
     BudgetBuilder builder;
@@ -85,10 +85,9 @@ public class BudgetController {
     public String showBudgetCurrent(Model model){
 
         hHelper.showHeader(model);
-
-
-        /*model.addAttribute("budgetposts", );*/
-
+        budget = builder.makeCurrentBudget();
+        model.addAttribute("month",budget.getMonth() + " " + budget.getYear());
+        model.addAttribute("budgetposts", budget.getBudgetPosts());
         return "budgetview";
     }
 

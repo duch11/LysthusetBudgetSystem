@@ -19,26 +19,20 @@
             <!--    OVERSIGT      -->
             <div class="row">
                 <br/>
-                <div class="col-lg-4">
+                <div class="col-lg-6 col-lg-offset-3">
                     <!--    MONTH CHOOSER      -->
-                    <div class="panel panel-primary">
-                        <div class="panel-body" style="padding-top: 24px">
-                            <div class="monthPickerSmallText">Budget for:</div>
-                            <div class="text-center monthPicker">Januar 2017</div>
-                            <div class="btn-group btn-group-justified">
-                                <a class="btn btn-primary"> &lt; </a>
-                                <a class="btn btn-primary"> &gt; </a>
+                    <div class="panel panel-primary" style="height: 130px;">
+                        <div class="panel-heading text-center" style="padding: 5px">
+                            <!--    TITEL HUSLEJE      -->
+                            <div class="" style="font-size: 20px; font-weight: bold; padding: 0;">Budget for:</div>
+                        </div>
+                        <div class="panel-body text-center" style="padding-top: 14px;">
+                            <!--<div class="text-center" style="font-size: 30px; font-weight: bold">Januar 2017</div>-->
+                            <div class="btn-group">
+                                <a class="btn" style="font-size: 30px;"> &lt; </a>
+                                <div th:text="${month}" class="btn disabled text-capitalize" style="font-size: 30px; font-weight: bold; opacity: 1; min-width: 300px;">JANUAR 2017</div>
+                                <a class="btn" style="font-size: 30px;"> &gt; </a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div>Tilføj Budget-post</div>
-                        </div>
-                        <div class="panel-body">
-
                         </div>
                     </div>
                 </div>
@@ -47,23 +41,23 @@
                     <div class="col-lg-6 col-lg-offset-3">
                         <table class="table">
                             <thead>
-                            <th>Budget post</th>
-                            <th>Kategori</th>
-                            <th>Beløb pr måned</th>
-                            <th>Beløb pr person</th>
+                                <th>Budget post</th>
+                                <th>Kategori</th>
+                                <th>Beløb pr måned</th>
+                                <th>Beløb pr person</th>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
+                            <tr th:each="budgetpost : ${budgetposts}">
+                                <td th:text="${budgetpost.getDescription()}">
                                     Kaffeklub
                                 </td>
-                                <td>
+                                <td  th:text="${budgetpost.getCategory().getLabel()}">
                                     Kaffe
                                 </td>
-                                <td>
+                                <td th:text="${budgetpost.getTotal()}">
                                     180kr
                                 </td>
-                                <td>
+                                <td th:text="${budgetpost.getShare()}">
                                     30kr
                                 </td>
                             </tr>

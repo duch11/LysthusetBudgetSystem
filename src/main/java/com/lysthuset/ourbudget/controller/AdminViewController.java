@@ -1,7 +1,6 @@
 package com.lysthuset.ourbudget.controller;
 
 import com.lysthuset.ourbudget.model.entities.User;
-import com.lysthuset.ourbudget.model.repositories.IUserRepository;
 import com.lysthuset.ourbudget.model.repositories.UserRepository;
 import com.lysthuset.ourbudget.model.utilities.HeaderHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.List;
 public class AdminViewController {
 
     @Autowired
-    IUserRepository usersRepo = new UserRepository();
+    UserRepository usersRepo = new UserRepository();
 
     List<User> usersArray;
 

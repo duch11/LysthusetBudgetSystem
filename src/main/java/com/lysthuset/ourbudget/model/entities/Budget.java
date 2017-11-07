@@ -66,5 +66,7 @@ public class Budget {
         return payLabels;
     }
 
-
+    public ArrayList<BudgetPost> getBudgetPosts() {
+        return budgetPosts;
+    }
 }

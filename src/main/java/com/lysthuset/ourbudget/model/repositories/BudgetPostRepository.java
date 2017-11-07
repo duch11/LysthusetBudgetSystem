@@ -13,17 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BudgetPostRepository implements IBudgetPostRepository {
+public class BudgetPostRepository{
 
     @Autowired
     JdbcTemplate jdbc;
 
-    @Override
+
     public ArrayList<BudgetPost> readAll() {
         return null;
     }
 
-    @Override
     public ArrayList<BudgetPost> readBudgetPostsForMonth(int monthID) {
         List<BudgetPost> budgetPostsForMonth = new ArrayList<BudgetPost>();
 
@@ -77,10 +76,9 @@ public class BudgetPostRepository implements IBudgetPostRepository {
 
             //add the budgetpost containing its users and its BudgetPostlabel+Payment Categories children, to the list
             budgetPostsForMonth.add(
-
                     new BudgetPost(
                             sqlRowSetBP.getInt("BudgetPost_ID"),
-                            category,
+                        sqlRowSetBP.getString("description"), category,
                             sqlRowSetBP.getBigDecimal("amount"),
                             (ArrayList<User>) userList
                     )

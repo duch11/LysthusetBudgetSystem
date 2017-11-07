@@ -12,12 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PaymentRepository implements IPaymentRepository {
+public class PaymentRepository {
 
     @Autowired
     JdbcTemplate jdbc;
 
-    @Override
     public List<Payment> readPaymentsFor(User user) {
         List<Payment> paymentsForUser = new ArrayList<Payment>();
 
@@ -45,12 +44,10 @@ public class PaymentRepository implements IPaymentRepository {
         return paymentsForUser;
     }
 
-    @Override
     public ArrayList<Payment> readAll() {
         return null;
     }
 
-    @Override
     public ArrayList<Payment> readPaymentsForMonth(int monthID) {
 
         List<Payment> paymentsForMonth = new ArrayList<Payment>();
