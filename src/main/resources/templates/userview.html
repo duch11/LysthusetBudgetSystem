@@ -67,6 +67,13 @@
             </div>
             <!--    OVERSIGT SLUT      -->
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        <button type="button" style="background-color: darkgreen; color: whitesmoke" class="btn btn-lg" data-toggle="modal" data-target="#createPayment">Tilføj Udlæg</button>
+                    </p>
+                </div>
+            </div>
 
 
             <!--    UDLÆG LISTE      -->
@@ -75,9 +82,9 @@
 
                     <!--    PANEL HEADING      -->
                     <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-size: 20px; font-weight: bold">
-                            Udlæg denne måned <button type="button" style="background-color: darkgreen" class="btn btn-primary" data-toggle="modal" data-target="#createPayment">Tilføj Udlæg</button>
-                        </div>
+                        <!--<div class="panel-heading" style="font-size: 20px; font-weight: bold">
+                            Udlæg denne måned
+                        </div>-->
 
                         <!--    PANEL BODY      -->
                         <div class="panel-body">
@@ -132,16 +139,18 @@
                                     <input class="form-control" id="password" type="password"/>
                                 </div>
 
+                                <input id="userID" type="hidden" th:attr="value=${currentUser.getUserID()}"/>
+
                                 <!--DESCRIPTION-->
                                 <div class="form-group">
-                                    <label for="beskrivelse">Beskrivelse</label>
-                                    <input class="form-control" id="beskrivelse" type="text"/>
+                                    <label for="description">Beskrivelse</label>
+                                    <input class="form-control" id="description" type="text"/>
                                 </div>
 
                                 <!--KATEGORI-->
                                 <div class="form-group">
-                                    <label for="kategori">Kategori</label>
-                                    <select class="form-control" id="kategori">
+                                    <label for="paymentcategoryID">Kategori</label>
+                                    <select class="form-control" id="paymentcategoryID">
                                         <option th:each="payLabel : ${categories}" th:text="${payLabel.getLabel()}" th:attr="value=${payLabel.getID()}">Dagligvarer</option>
                                     </select>
                                 </div>

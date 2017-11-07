@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 @Controller
@@ -62,10 +63,15 @@ public class BudgetController {
         return "userview";
     }
 
-    @RequestMapping(value = "/userview/adduser", method = RequestMethod.POST)
-    public String adduser(Model model, @RequestParam("userID") int userID){
-
-        //TODO: make adduser!
+    @RequestMapping(value = "/userview/addpayment", method = RequestMethod.POST)
+    public String addPayment(Model model,
+                          @RequestParam("userID") String userID,
+                          @RequestParam("password") String password,
+                          @RequestParam("description") String description,
+                          @RequestParam("paymentcategoryID") String categoryID,
+                          @RequestParam("amount") BigDecimal amount){
+        System.out.println(userID + " " + password + " " + description + " " + categoryID + " " + amount);
+        /*TODO: GIGA INT ERROR, MÅSKE I HTML VIEW*/
 
         return showUserviewCurrent(model, userID);
     }
@@ -88,6 +94,7 @@ public class BudgetController {
         budget = builder.makeCurrentBudget();
         model.addAttribute("month",budget.getMonth() + " " + budget.getYear());
         model.addAttribute("budgetposts", budget.getBudgetPosts());
+        model.addAttribute("total", budget.getBudgetedTotal());
         return "budgetview";
     }
 

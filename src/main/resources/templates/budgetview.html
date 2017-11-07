@@ -54,61 +54,19 @@
                                 <td  th:text="${budgetpost.getCategory().getLabel()}">
                                     Kaffe
                                 </td>
-                                <td th:text="${budgetpost.getTotal()}">
+                                <td th:text="${budgetpost.getTotal()} + ' kr'">
                                     180kr
                                 </td>
-                                <td th:text="${budgetpost.getShare()}">
+                                <td th:text="${budgetpost.getShare()} + ' kr'">
                                     30kr
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Fællesting
-                                </td>
-                                <td>
-                                    Dagligvarer
-                                </td>
-                                <td>
-                                    300kr
-                                </td>
-                                <td>
-                                    50kr
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Husleje
-                                </td>
-                                <td>
-                                    Regning
-                                </td>
-                                <td>
-                                    21000kr
-                                </td>
-                                <td>
-                                    3500kr
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    LLO
-                                </td>
-                                <td>
-                                    Regning
-                                </td>
-                                <td>
-                                    136kr
-                                </td>
-                                <td>
-                                    22,5kr
                                 </td>
                             </tr>
                             </tbody>
                             <tfoot>
                             <th></th>
                             <th></th>
-                            <th>21.616,00kr</th>
-                            <th>3602,7kr</th>
+                            <th th:text="${total} + ' kr'">21.616,00kr</th>
+                            <th></th>
                             </tfoot>
                         </table>
                     </div>

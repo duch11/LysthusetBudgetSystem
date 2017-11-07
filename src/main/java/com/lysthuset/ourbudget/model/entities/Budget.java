@@ -69,4 +69,12 @@ public class Budget {
     public ArrayList<BudgetPost> getBudgetPosts() {
         return budgetPosts;
     }
+
+    public BigDecimal getBudgetedTotal(){
+        BigDecimal bTotal = new BigDecimal("0");
+        for(BudgetPost bp : budgetPosts){
+            bTotal = bTotal.add(bp.getTotal());
+        }
+        return bTotal;
+    }
 }
