@@ -21,7 +21,7 @@ public class PaymentRepository {
         List<Payment> paymentsForUser = new ArrayList<Payment>();
 
         //Joiner payments og paymentlabels på deres FK og ID Finder en bestemt brugers payments (ikke måned specifik)
-        //TODO: tilføj måned parameter
+
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM payments INNER JOIN paymentlabels ON FK_PayLabel_ID=PaymentLabel_ID WHERE FK_user_ID=" + user.getUserID());
         while (sqlRowSet.next()) {
             paymentsForUser.add(
@@ -53,7 +53,6 @@ public class PaymentRepository {
         List<Payment> paymentsForMonth = new ArrayList<Payment>();
 
         //Joiner payments og paymentlabels på deres FK og ID Finder en bestemt brugers payments (ikke måned specifik)
-        //TODO: tilføj måned parameter
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM payments INNER JOIN paymentlabels ON FK_PayLabel_ID=PaymentLabel_ID WHERE FK_month_ID=" + monthID);
         while (sqlRowSet.next()) {
             paymentsForMonth.add(
