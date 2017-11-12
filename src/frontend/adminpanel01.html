@@ -92,11 +92,11 @@
                 <form th:object="${user}" class="form-inline" action="/adduser" method="POST">
 
                     <div class="form-group">
-                        <category for="nameField">Navn:</category>
+                        <payLabel for="nameField">Navn:</payLabel>
                         <input th:field="*{name}" type="text" id="nameField" class="form-control"/>
                     </div>
                     <div class="form-group">
-                        <category for="passwordField">Password:</category>
+                        <payLabel for="passwordField">Password:</payLabel>
                         <input th:field="*{pass}" type="text" class="form-control" id="passwordField"/>
                     </div>
                     <input class="btn btn-default" type="submit" value="Lav ny bruger"/>

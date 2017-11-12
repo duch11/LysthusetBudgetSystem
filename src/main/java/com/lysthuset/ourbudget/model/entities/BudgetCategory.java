@@ -11,6 +11,7 @@ public class BudgetCategory {
         this.ID = ID;
         this.label = label;
         this.paymentCategories = paymentCategories;
+        System.out.println("BUDGETCAT CONSTRUCTOR is it empty?: " + paymentCategories.isEmpty());
     }
 
     public int getID() {
@@ -23,5 +24,9 @@ public class BudgetCategory {
 
     public ArrayList<PayLabel> getPayLabels() {
         return paymentCategories;
+    }
+
+    public boolean hasPayments(){
+        return !paymentCategories.isEmpty();
     }
 }

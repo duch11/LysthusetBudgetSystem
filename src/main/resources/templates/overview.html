@@ -21,17 +21,6 @@
             <div class="row">
                 <br/>
                 <div class="col-lg-4">
-                    <!--    MONTH CHOOSER      -->
-                    <div class="panel panel-primary" style="height: 130px;">
-                        <div class="panel-body" style="padding-top: 24px">
-                            <div class="text-center" style="font-size: 30px; font-weight: bold">Januar 2017</div>
-                            <div class="btn-group btn-group-justified">
-                                <a class="btn btn-primary"> &lt; </a>
-                                <!--<a class="btn btn-primary disabled btn-lg">JANUAR</a>-->
-                                <a class="btn btn-primary"> &gt; </a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="panel panel-primary" >
                         <!--style="height: 130px"-->
                         <div class="panel-heading text-center" style="padding: 5px">
@@ -44,52 +33,12 @@
                             <!--    HUSLEJE BELØB      -->
                             <table class="table">
                                 <tbody>
-                                <tr>
+                                <tr th:each="user : ${usersWithRent}">
                                     <td>
-                                        <div class="rentList">Jonas </div>
+                                        <div th:text="${user.getName()}" class="rentList">Jonas </div>
                                     </td>
                                     <td>
-                                        <div class="rentList">3500kr</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="rentList">Stine </div>
-                                    </td>
-                                    <td>
-                                        <div class="rentList">3400kr</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="rentList">Tine </div>
-                                    </td>
-                                    <td>
-                                        <div class="rentList">3500kr</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="rentList">Marie </div>
-                                    </td>
-                                    <td>
-                                        <div class="rentList">3210kr</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="rentList">Michael </div>
-                                    </td>
-                                    <td>
-                                        <div class="rentList">3500kr</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="rentList">Røde </div>
-                                    </td>
-                                    <td>
-                                        <div class="rentList">3500kr</div>
+                                        <div th:text="${budget.calculateRentFor(user)} + 'kr'" class="rentList">3500kr</div>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -100,8 +49,9 @@
 
                 <div class="col-lg-8">
 
-                    <div class="panel panel-danger">
-                        <div class="panel-heading" style="font-size: 20px; font-weight: bold">
+                    <div class="panel panel-primary">
+                        <!--TODO: gør at farven ændrere sig-->
+                        <div th:text="'Budget ' + ${budget.getBudgetBalance()} + ' KR'" class="panel-heading" style="font-size: 20px; font-weight: bold">
                             Budget −193,95 KR
                         </div>
 
@@ -125,46 +75,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>
+                                <tr th:each="budgetpost : ${budgetpostswithpayments}">
+                                    <td th:text="${budgetpost.getDescription()}">
                                         Kaffe
                                     </td>
-                                    <td>
+                                    <td th:text="${budgetpost.getTotal()}">
                                         180,00 kr
                                     </td>
-                                    <td>
+                                    <td th:text="${budget.getTotalSpendOn(budgetpost)}">
                                         -100,00 kr
                                     </td>
-                                    <td>
+                                    <td  th:text="${budget.getRemainingFor(budgetpost)}">
                                         80,00 kr
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Dagligvarer
-                                    </td>
-                                    <td>
-                                        300,00 kr
-                                    </td>
-                                    <td>
-                                        -73,95 kr
-                                    </td>
-                                    <td>
-                                        226,05 kr
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Større indkøb
-                                    </td>
-                                    <td>
-                                        0,00 kr
-                                    </td>
-                                    <td>
-                                        -500,00 kr
-                                    </td>
-                                    <td>
-                                        -500,00 kr
                                     </td>
                                 </tr>
                                 </tbody>

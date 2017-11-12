@@ -70,11 +70,60 @@ public class Budget {
         return budgetPosts;
     }
 
+    public ArrayList<BudgetPost> getBudgetPostsWithPayments() {
+        ArrayList<BudgetPost> payBudgetPosts =  new ArrayList<>();
+        for (BudgetPost bp : budgetPosts){
+            if(bp.canHavePayments()){
+                payBudgetPosts.add(bp);
+            }
+        }
+        return payBudgetPosts;
+    }
+
     public BigDecimal getBudgetedTotal(){
         BigDecimal bTotal = new BigDecimal("0");
         for(BudgetPost bp : budgetPosts){
             bTotal = bTotal.add(bp.getTotal());
         }
         return bTotal;
+    }
+
+    public BigDecimal getBudgetBalance(){
+        BigDecimal bBalance = new BigDecimal("0");
+        for(BudgetPost bp : getBudgetPostsWithPayments()){
+            bBalance = bBalance.add(bp.getTotal());
+            bBalance = bBalance.add(getTotalSpendOn(bp));
+        }
+        return bBalance;
+    }
+
+    public ArrayList<User> getUsers(){
+        ArrayList<User> users =  new ArrayList<>();
+        for (BudgetPost bp : budgetPosts){
+            if(users.isEmpty()){
+                users = bp.getPayees();
+            } else {
+                for (User u : bp.getPayees()){
+                    boolean notFound = true;
+                    for (User u2 : users){
+                        if (u.getUserID() == u2.getUserID()){
+                            notFound = false;
+                        }
+                    }
+                    if(notFound){
+                        users.add(u);
+                    }
+                }
+            }
+        }
+        return users;
+    }
+
+    public BigDecimal getRemainingFor(BudgetPost budgetPost){
+        return budgetPost.calculateRemaining(payments);
+    }
+
+    public BigDecimal getTotalSpendOn(BudgetPost budgetPost){
+        return budgetPost.calculateTotalSpend(payments);
     }
 }

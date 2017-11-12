@@ -33,15 +33,23 @@ public class BudgetController {
     @Autowired
     BudgetBuilder builder;
 
+
     @Autowired
     HeaderHelper hHelper;
 
     private User currentUser;
     private Budget budget;
 
-    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "","/overview"}, method = RequestMethod.GET)
     public String showOverview(Model model){
-        hHelper.showHeader(model);
+        budget = builder.makeCurrentBudget();
+        model.addAttribute("usersWithRent", budget.getUsers());
+        model.addAttribute("budget", budget);
+        model.addAttribute("budgetpostswithpayments", budget.getBudgetPostsWithPayments());
+
+        model.addAttribute("month",budget.getMonth() + " " + budget.getYear());
+        hHelper.showHeaderOverview(model);
+        model.addAttribute("overblik", true);
         return "overview";
     }
 
@@ -65,15 +73,14 @@ public class BudgetController {
 
     @RequestMapping(value = "/userview/addpayment", method = RequestMethod.POST)
     public String addPayment(Model model,
-                          @RequestParam("userID") String userID,
+                          @RequestParam("userID") int userID,
                           @RequestParam("password") String password,
                           @RequestParam("description") String description,
-                          @RequestParam("paymentcategoryID") String categoryID,
-                          @RequestParam("amount") BigDecimal amount){
-        System.out.println(userID + " " + password + " " + description + " " + categoryID + " " + amount);
-        /*TODO: GIGA INT ERROR, MÅSKE I HTML VIEW*/
+                          @RequestParam("paymentcategoryID") int paymentcategoryID,
+                          @RequestParam("amount") String amount){
+        System.out.println(userID + " " + password + " " + description + " " + paymentcategoryID + " " + amount);
 
-        return showUserviewCurrent(model, userID);
+        return showUserviewCurrent(model, new Integer(userID));
     }
 
     @RequestMapping(value = "/userview/month", method = RequestMethod.GET)
@@ -92,6 +99,7 @@ public class BudgetController {
 
         hHelper.showHeader(model);
         budget = builder.makeCurrentBudget();
+
         model.addAttribute("month",budget.getMonth() + " " + budget.getYear());
         model.addAttribute("budgetposts", budget.getBudgetPosts());
         model.addAttribute("total", budget.getBudgetedTotal());

@@ -1,7 +1,9 @@
 package com.lysthuset.ourbudget.controller;
 
+import com.lysthuset.ourbudget.model.entities.Budget;
 import com.lysthuset.ourbudget.model.entities.User;
 import com.lysthuset.ourbudget.model.repositories.UserRepository;
+import com.lysthuset.ourbudget.model.utilities.BudgetBuilder;
 import com.lysthuset.ourbudget.model.utilities.HeaderHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,14 +23,21 @@ public class AdminViewController {
     @Autowired
     HeaderHelper helper;
 
+    @Autowired
+    BudgetBuilder builder;
+
+    private Budget budget;
+
     @RequestMapping(value = {"/adminpanel", "/deleteuser", "/adduser", "/edituser", "/error"}, method = RequestMethod.GET)
     public String adminpanel(Model model){
         usersArray = usersRepo.readAll();
-
+        budget = builder.makeCurrentBudget();
         model.addAttribute("users", usersArray);
         model.addAttribute("useredit", new User());
         helper.showHeader(model);
         model.addAttribute("useradd", new User());
+
+        model.addAttribute("month",budget.getMonth() + " " + budget.getYear());
         return "adminview";
     }
 

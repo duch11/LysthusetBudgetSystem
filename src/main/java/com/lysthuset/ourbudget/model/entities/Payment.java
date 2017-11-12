@@ -8,11 +8,11 @@ public class Payment {
     private int monthID;
     private BigDecimal amount;
     private String description;
-    private String category;
+    private String payLabel;
 
-    public Payment(int ID, String category, int userID, int monthID, BigDecimal amount, String description) {
+    public Payment(int ID, String payLabel, int userID, int monthID, BigDecimal amount, String description) {
         this.ID = ID;
-        this.category = category;
+        this.payLabel = payLabel;
         this.userID = userID;
         this.monthID = monthID;
         this.amount = amount;
@@ -59,11 +59,11 @@ public class Payment {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
+    public String getPayLabel() {
+        return payLabel;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setPayLabel(String payLabel) {
+        this.payLabel = payLabel;
     }
 }

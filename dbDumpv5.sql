@@ -51,9 +51,9 @@ DROP TABLE IF EXISTS `bpostlabels`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bpostlabels` (
   `BPostLabel_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `payLabel` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`BPostLabel_ID`),
-  UNIQUE KEY `label_budgetposts_label_uindex` (`category`)
+  UNIQUE KEY `label_budgetposts_label_uindex` (`payLabel`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -134,7 +134,7 @@ DROP TABLE IF EXISTS `paymentlabels`;
 CREATE TABLE `paymentlabels` (
   `PaymentLabel_ID` int(11) NOT NULL AUTO_INCREMENT,
   `FK_BPostLabel_ID` int(11) NOT NULL,
-  `category` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `payLabel` varchar(100) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`PaymentLabel_ID`),
   KEY `label_payments_label_budgetposts_ID_fk` (`FK_BPostLabel_ID`),
   CONSTRAINT `label_payments_label_budgetposts_ID_fk` FOREIGN KEY (`FK_BPostLabel_ID`) REFERENCES `bpostlabels` (`BPostLabel_ID`)

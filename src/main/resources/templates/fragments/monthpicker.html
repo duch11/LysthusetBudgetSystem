@@ -1,0 +1,12 @@
+<div th:fragment="monthpicker">
+    <!-- this is header -->
+  <!--    MONTH CHOOSER      -->
+  <div class="text-center" style="margin-top: 20px">
+    <!--<div class="text-center" style="font-size: 30px; font-weight: bold">Januar 2017</div>-->
+    <div class="btn-group">
+      <a class="btn btn-default" style="font-size: 30px; padding-right: 6px;"> &lt; </a>
+      <div th:text="${month}" class="btn btn-default disabled text-capitalize" style="font-size: 30px; font-weight: bold; opacity: 1; min-width: 250px; padding-left: 6px; padding-right: 6px;">JANUAR 2017</div>
+      <a class="btn btn-default" style="font-size: 30px; padding-left: 6px;"> &gt; </a>
+    </div>
+  </div>
+</div>

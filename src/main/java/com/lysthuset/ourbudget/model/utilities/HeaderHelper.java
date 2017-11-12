@@ -24,4 +24,10 @@ public class HeaderHelper {
     public User showHeader(Model model){
         return showHeaderFor(model, -1);
     }
+
+    public User showHeaderOverview(Model model){
+        showHeaderFor(model, -1);
+        return new User(0, "","",false,false);
+
+    }
 }

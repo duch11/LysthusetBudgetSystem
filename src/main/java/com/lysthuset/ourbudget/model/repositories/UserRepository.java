@@ -1,5 +1,6 @@
 package com.lysthuset.ourbudget.model.repositories;
 
+import com.lysthuset.ourbudget.model.entities.BudgetPost;
 import com.lysthuset.ourbudget.model.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -48,6 +49,7 @@ public class UserRepository {
         }
         return new User(-1, "found no user", "found no user", false, false);
     }
+
 
     public void update(User user) {
         // strings i SQL skal omringes af 'string' quotes derfor '" + booo.getBoo() + "'

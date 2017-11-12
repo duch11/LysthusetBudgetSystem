@@ -21,34 +21,8 @@
             <div class="row">
                 <br/>
 
-
-                <!--    MONTH CHOOSER      -->
-                <div class="col-lg-5">
-                    <div class="panel panel-primary" style="height: 130px;">
-                        <div class="panel-heading text-center" style="padding: 5px">
-                            <!--    TITEL HUSLEJE      -->
-                            <div th:text="'Overblik for: ' + ${#strings.capitalize(currentUser.getName())}" class="" style="font-size: 20px; font-weight: bold; padding: 0;">Overblik for: Jonas</div>
-                        </div>
-                        <div class="panel-body text-center" style="padding-top: 14px;">
-                            <!--<div class="text-center" style="font-size: 30px; font-weight: bold">Januar 2017</div>-->
-                            <div class="btn-group">
-                                <a class="btn" style="font-size: 30px;"> &lt; </a>
-
-
-
-                                <div th:text="${month}" class="btn disabled text-capitalize" style="font-size: 30px; font-weight: bold; opacity: 1; min-width: 300px;">JANUAR 2017</div>
-
-
-
-                                <a class="btn" style="font-size: 30px;"> &gt; </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--    MONTH CHOOSER SLUT      -->
-
                 <!--    HUSLEJE OVERSIGT      -->
-                <div class="col-lg-7">
+                <div class="col-lg-8">
                     <div class="panel panel-primary" style="height: 130px">
                         <div class="panel-heading text-center" style="padding: 5px">
 
@@ -101,7 +75,7 @@
                                 <tr th:each="payment : ${payments}">
                                     <td class="text-capitalize">13/1 - 2017</td>
                                     <td th:text="${payment.getDescription()}" class="text-capitalize">Description</td>
-                                    <td th:text="${payment.getCategory()}" class="text-capitalize">Category</td>
+                                    <td th:text="${payment.getPayLabel()}" class="text-capitalize">Category</td>
                                     <td th:text="${payment.getAmount()} + ' kr'">Amount</td>
                                 </tr>
 
@@ -131,26 +105,26 @@
                         <div class="modal-body">
 
                             <!--FORM BEGIN-->
-                            <form class="form">
+                            <form class="form" method="post" action="/userview/addpayment">
 
                                 <!--PASSWORD-->
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input class="form-control" id="password" type="password"/>
+                                    <input class="form-control" id="password" th:name="password" type="password"/>
                                 </div>
 
-                                <input id="userID" type="hidden" th:attr="value=${currentUser.getUserID()}"/>
+                                <input id="userID" type="hidden" th:name="userID" th:attr="value=${currentUser.getUserID()}"/>
 
                                 <!--DESCRIPTION-->
                                 <div class="form-group">
                                     <label for="description">Beskrivelse</label>
-                                    <input class="form-control" id="description" type="text"/>
+                                    <input class="form-control"  th:name="description" id="description" type="text"/>
                                 </div>
 
                                 <!--KATEGORI-->
                                 <div class="form-group">
                                     <label for="paymentcategoryID">Kategori</label>
-                                    <select class="form-control" id="paymentcategoryID">
+                                    <select class="form-control" th:name="paymentcategoryID" id="paymentcategoryID">
                                         <option th:each="payLabel : ${categories}" th:text="${payLabel.getLabel()}" th:attr="value=${payLabel.getID()}">Dagligvarer</option>
                                     </select>
                                 </div>
@@ -158,7 +132,7 @@
                                 <!--AMOUNT-->
                                 <div class="form-group">
                                     <label for="amount">Beløb</label>
-                                    <input class="form-control" id="amount" type="text"/>
+                                    <input class="form-control"  th:name="amount" id="amount" type="text"/>
                                 </div>
 
                                 <!--GEM-->

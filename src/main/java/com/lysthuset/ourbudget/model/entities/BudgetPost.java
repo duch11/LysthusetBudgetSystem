@@ -1,6 +1,7 @@
 package com.lysthuset.ourbudget.model.entities;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class BudgetPost {
@@ -23,7 +24,7 @@ public class BudgetPost {
     public BigDecimal getShare() {
         BigDecimal share = new BigDecimal("0");
         if(payees.size() != 0){
-            share = total.divide(new BigDecimal(payees.size()));
+            share = total.divide(new BigDecimal(payees.size()), 2, RoundingMode.HALF_UP);
         }
 
         return share;
@@ -50,4 +51,40 @@ public class BudgetPost {
     public BudgetCategory getCategory() {
         return category;
     }
+
+    public ArrayList<User> getPayees(){
+        return payees;
+    }
+
+    public BigDecimal calculateRemaining(ArrayList<Payment> payments){
+        BigDecimal remaining = total;
+        for(Payment payment : payments){
+            for(PayLabel payLabel : category.getPayLabels()){
+                if(payment.getPayLabel().equals(payLabel.getLabel())){
+                    remaining = remaining.subtract(payment.getAmount());
+                }
+            }
+        }
+        return remaining;
+    }
+
+    public BigDecimal calculateTotalSpend(ArrayList<Payment> payments){
+        BigDecimal total = new BigDecimal(0);
+        for(Payment payment : payments){
+            for(PayLabel payLabel : category.getPayLabels()){
+                if(payment.getPayLabel().equals(payLabel.getLabel())){
+                    total = total.subtract(payment.getAmount());
+                }
+            }
+        }
+        return total;
+    }
+
+    public boolean canHavePayments(){
+        if(category.hasPayments()){
+            return true;
+        }
+        return false;
+    }
 }
+
